@@ -89,6 +89,9 @@ button{
   color:#FFFFFF;
   background-color:#1AAD19;
 }
+button.mt1,.button.mt1{
+  margin-top: 1rem;
+}
 .input{
   position: relative;
   display:block;
@@ -145,5 +148,20 @@ image{
 }
 .canvas .tip{
   padding:1rem 0;
+  text-align: center;
+}
+.piclist{
+  padding-left:10px;
+  box-sizing:border-box;
+  position: absolute;
+  height:74%;
+}
+.pic{
+  width:50%;
+  display:inline-block;
+  box-sizing:border-box;
+  padding:0 10px 0 0;
+}
+.pic .tip{
   text-align: center;
 }

@@ -3,6 +3,7 @@
 var app = getApp()
 var lineChart = null;
 var wxCharts = require('../../lib/wxcharts.js');
+var date = new Date();
 Page({
   data: {
     tabs: [{
@@ -14,11 +15,12 @@ Page({
     }, {
       text: "设备日志"
     }],
-    tab: 0,
+    tab: 2,
     device: ["设备选择", "温度", "湿度", "光照", "二氧化碳", "PM2.5"],
     device_index: 0,
     data_cycle: ["周期选择（默认一天）", "一天", "一周", "一个月", "六个月"],
-    data_cycle_index: 0
+    data_cycle_index: 0,
+    date: [date.getFullYear(),date.getMonth()+1,date.getDate()].join('-')
   },
   //事件处理函数
   tabswitch: function (e) {
@@ -36,18 +38,24 @@ Page({
       data_cycle_index: e.detail.value
     })
   },
+  dateChange: function (e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
   onLoad: function () {
     var windowWidth = 320;
     var self = this;
-    try {
-      var res = wx.getSystemInfoSync();
-      windowWidth = res.windowWidth;
-      self.setData({
-        wwidth: windowWidth
-      })
-    } catch (e) {
-      console.error('getSystemInfoSync failed!');
-    }
+    var res = wx.getSystemInfoSync();
+        windowWidth = res.windowWidth;
+        console.log(res)
+        wx.showToast({
+          title: (res.windowHeight)+''
+        })
+        self.setData({
+          wwidth: windowWidth
+        })
+      
 
     new wxCharts({
       canvasId: 'lineCanvas',

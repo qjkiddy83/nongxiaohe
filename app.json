@@ -1,8 +1,8 @@
 {
   "pages":[
     "pages/monitor/monitor",
-    "pages/index/index",
     "pages/msgs/msgs",
+    "pages/index/index",
     "pages/home/home"
   ],
   "window":{

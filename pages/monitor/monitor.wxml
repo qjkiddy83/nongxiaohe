@@ -35,6 +35,7 @@
       <picker bindchange="dataCycleChange" value="{{data_cycle_index}}" range="{{data_cycle}}">
           <view class="input">{{data_cycle[data_cycle_index]}}  <b>></b></view>
       </picker>
+      <button class="mt1" type="primary">查看曲线</button>
     </view>
     <view class="group">
       <text class="tip">周期曲线</text>
@@ -42,6 +43,50 @@
         <text class="tip">两条曲线，一条每天最高，一条每天最低</text>
         <canvas style="width: {{wwidth}}px; height: {{wwidth*3/4}}px;" canvas-id="lineCanvas"></canvas>
       </view>
+    </view>
+  </view>
+  <view class="tabcont" style="display:{{tab==2?'block':'none'}}">
+    <view class="group">
+      <text class="tip">选择设备拍照时间</text>
+      <picker mode="date" value="{{date}}" bindchange="dateChange">
+          <view class="input">拍照时间<b>{{date}}</b></view>
+      </picker>
+    </view>
+    <view class="group">
+      <scroll-view class="piclist" scroll-y bindscrolltolower="lower">
+        <view class="pic">
+          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
+          <text class="tip">2016.8.29 12:50</text>
+        </view>
+        <view class="pic">
+          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
+          <text class="tip">2016.8.29 12:50</text>
+        </view>
+        <view class="pic">
+          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
+          <text class="tip">2016.8.29 12:50</text>
+        </view>
+        <view class="pic">
+          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
+          <text class="tip">2016.8.29 12:50</text>
+        </view>
+        <view class="pic">
+          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
+          <text class="tip">2016.8.29 12:50</text>
+        </view>
+        <view class="pic">
+          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
+          <text class="tip">2016.8.29 12:50</text>
+        </view>
+        <view class="pic">
+          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
+          <text class="tip">2016.8.29 12:50</text>
+        </view>
+        <view class="pic">
+          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
+          <text class="tip">2016.8.29 12:50</text>
+        </view>
+      </scroll-view>
     </view>
   </view>
 </view>
