@@ -2,6 +2,25 @@
 page{
   background: #f2f2f2;
 }
+.tabs {
+  display: flex;
+  width: 90%;
+  padding: 0 5%;
+  border-bottom: 1px solid #000;
+  margin-bottom: 1rem;
+}
+.tabs .li{
+  flex: 1;
+  padding: 5px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 40px;
+}
+.tabs .li.cur{
+  color: rgb(0, 153, 0);
+  border-bottom: 1px solid rgb(0, 153, 0);
+  margin-bottom: -2px;
+}
 .h1{
   display: block;
   text-align: center;
@@ -97,6 +116,10 @@ button{
   line-height: 20px;
   text-align: center;
 }
+.input.superscript i{
+  display: inline-block;
+  vertical-align: middle;
+}
 .group{
   margin-bottom: 1rem;
 }
@@ -106,4 +129,21 @@ button{
 .group .box .button{
   flex: 1;
   margin: 0 2% 20px;
+}
+image{
+  width: 100%;
+  background: #fff;
+}
+.status-success{
+  color: rgb(0, 153, 0);
+}
+.status-error{
+  color: rgb(204, 0, 0);
+}
+.canvas{
+  background: #fff;
+}
+.canvas .tip{
+  padding:1rem 0;
+  text-align: center;
 }

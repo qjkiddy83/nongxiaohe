@@ -1,31 +1,47 @@
 <!--index.wxml-->
 <view class="main">
-  <view class="login">
-    <text class="h1">农场试验田名称</text>
+  <view class="tabs">
+    <block wx:for="{{tabs}}">
+      <view class="li {{index==tab?'cur':''}}" data-tab="{{index}}" bindtap="tabswitch">{{item.text}}</view>
+    </block>
+    </view>
+  <view class="tabcont" style="display:{{tab==0?'block':'none'}}">
     <view class="group">
-      <text class="tip">环境监测</text>
-      <navigator class="input" url="../home/home"> 温室环境监测 <b>></b></navigator>
-      <navigator class="input" url="../home/home"> 大田环境监测 <b>></b></navigator>
+      <text class="tip">设备状态</text>
+      <navigator class="input" url="../home/home"> 网关状态： <b><i class="status-success">正常</i></b></navigator>
+      <navigator class="input" url="../home/home"> 四要素电量： <b>4.1V ></b></navigator>
     </view>
     <view class="group">
-      <text class="tip">农事生产</text>
-      <view class="box">
-        <navigator class="button primary" url="../home/home"> 常拍产品 </navigator>
-        <navigator class="button primary" url="../home/home"> 记录农事 </navigator>
-        <navigator class="button primary" url="../home/home"> 产品出场 </navigator>
+      <text class="tip">实时图像  2016.8.29 12:50</text>
+      <image src=""></image>
+    </view>
+    <view class="group">
+      <text class="tip">设备采集</text>
+      <navigator class="input" url="../home/home"> 温度  28 ℃ <b><i class="status-success">正常</i> ></b></navigator>
+      <navigator class="input" url="../home/home"> 湿度 46 %RH <b><i class="status-error">离线</i> ></b></navigator>
+      <navigator class="input" url="../home/home"> 光照 780 LUX <b><i class="status-error">下限超标</i> ></b></navigator>
+      <navigator class="input" url="../home/home"> 二氧化碳 410 PPM <b><i class="status-error">上限超标</i> ></b></navigator>
+      <navigator class="input" url="../home/home"> 土壤温度  28 ℃ <b><i class="status-success">正常</i> ></b></navigator>
+      <navigator class="input" url="../home/home"> 土壤湿度 46 %RH <b><i class="status-error">离线</i> ></b></navigator>
+      <navigator class="input" url="../home/home"> PM2.5  270 <b><i class="status-error">下限超标</i> ></b></navigator>
+    </view>
+  </view>
+  <view class="tabcont" style="display:{{tab==1?'block':'none'}}">
+    <view class="group">
+      <text class="tip">设备周期选择</text>
+      <picker bindchange="deviceChange" value="{{device_index}}" range="{{device}}">
+          <view class="input">{{device[device_index]}}  <b>></b></view>
+      </picker>
+      <picker bindchange="dataCycleChange" value="{{data_cycle_index}}" range="{{data_cycle}}">
+          <view class="input">{{data_cycle[data_cycle_index]}}  <b>></b></view>
+      </picker>
+    </view>
+    <view class="group">
+      <text class="tip">周期曲线</text>
+      <view class="canvas">
+        <text class="tip">两条曲线，一条每天最高，一条每天最低</text>
+        <canvas style="width: {{wwidth}}px; height: {{wwidth*3/4}}px;" canvas-id="lineCanvas"></canvas>
       </view>
-      <navigator class="input" url="../home/home"> 农事记录管理 <b>></b></navigator>
-      <navigator class="input" url="../home/home"> 农场资料设置 <b>></b></navigator>
-      <navigator class="input" url="../home/home"> 农场地块设置 <b>></b></navigator>
-      <navigator class="input" url="../home/home"> 出场产品溯源批次管理 <b>></b></navigator>
-    </view>
-    <view class="group">
-      <text class="tip">农资采购</text>
-      <navigator class="input" url="../home/home"> 农小盒农资商城 <b>></b></navigator>
-    </view>
-    <view class="group">
-      <text class="tip">基础信息</text>
-      <navigator class="input superscript" url="../msgs/msgs"> 消息通知 <b>8</b></navigator>
     </view>
   </view>
 </view>
