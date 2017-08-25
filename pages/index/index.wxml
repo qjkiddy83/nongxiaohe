@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class="main">
+  <view class="login" style="display:{{success?'none':'block'}};">
+    <text class="h1">农小盒账号绑定登录</text>
+    <input name="input" placeholder="手机号" />
+    <input name="input" placeholder="安全码" />
+
+    <button type="primary" bindtap="bindDevice"> 确认绑定 </button>
+    <text class="tip">没有安全码？请查看设备说明书</text>
+  </view>
+  <view class="result" style="display:{{success?'block':'none'}};">
+    <view class="msg">
+      <icon type="success" size="60"/>
+      <text>绑定成功</text>
+    </view>
+    <text class="tip">下次登录直接进入设备管理界面</text>
+    <navigator class="button primary" open-type="redirect" url="../home/home"> 进入设备管理界面 </navigator>
+  </view>
+</view>

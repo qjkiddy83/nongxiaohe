@@ -1,0 +1,71 @@
+/**index.wxss**/
+page{
+  background: #f2f2f2;
+}
+.h1{
+  display: block;
+  text-align: center;
+  margin: 4rem auto 2rem;
+  font-size: 26px;
+}
+input{
+  display: block;
+  width: 96%;
+  background: #fff;
+  margin: 0;
+  font-size: 16px;
+  line-height: 46px;
+  height: 46px;
+  margin-bottom: 1px;
+  padding: 0 0 0 4%;
+}
+button{
+  margin-top: 3rem;
+  width: 60%;
+  font-size: 16px;
+}
+.tip{
+  display: block;
+  font-size: 14px;
+  color: #999999;
+  text-align: center;
+  margin-top: 10px;
+}
+.msg{
+  margin: 4rem auto 3rem;
+  text-align: center;
+}
+.msg icon{
+  display: block;
+  margin-bottom: 1rem;
+}
+.msg text{
+  display: block;
+}
+.result button{
+  margin-top: 1rem;
+}
+.button{
+  position:relative;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:14px;
+  padding-right:14px;
+  box-sizing:border-box;
+  font-size:16px;
+  text-align:center;
+  text-decoration:none;
+  line-height:2.55555556;
+  border-radius:5px;
+  -webkit-tap-highlight-color:transparent;
+  overflow:hidden;
+  color:#000000;
+  background-color:#F8F8F8;
+  margin-top: 3rem;
+  width: 60%;
+}
+.button.primary{
+  color:#FFFFFF;
+  background-color:#1AAD19;
+}

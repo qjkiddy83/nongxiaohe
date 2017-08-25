@@ -1,0 +1,23 @@
+<!--index.wxml-->
+<scroll-view scroll-y bindscrolltolower="lower">
+  <view class="card">
+    <view class="h3">系统消息</view>
+    <view class="p">发送给用户的下发消息，包含系统群发的消息，报警的消息，新闻的消息等等，信息内还可以增加连接等。消息发出是支持推送给PC端与移动端的微信通知中的，重要消息要短信通知。</view>
+    <view class="date">2015.10.29 18:10</view>
+  </view>
+  <view class="card">
+    <view class="h3">警告提醒</view>
+    <view class="p">温室一号，温度低于36摄氏度，请及时控制温度处理。</view>
+    <view class="date">2015.10.29 18:10</view>
+  </view>
+  <view class="card">
+    <view class="h3">操作提示</view>
+    <view class="p">温室二号，3号阀门已于2016.8.22 10:00打开，灌溉时长为30分钟。</view>
+    <view class="date">2015.10.29 18:10</view>
+  </view>
+  <view class="card">
+    <view class="h3">系统消息</view>
+    <view class="p">发送给用户的下发消息，包含系统群发的消息，报警的消息，新闻的消息等等，信息内还可以增加连接等。消息发出是支持推送给PC端与移动端的微信通知中的，重要消息要短信通知。</view>
+    <view class="date">2015.10.29 18:10</view>
+  </view>
+</scroll-view>

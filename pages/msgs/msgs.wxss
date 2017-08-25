@@ -1,0 +1,21 @@
+.card{
+  margin-bottom: 1px;
+  background: rgba(242, 242, 242, 1);
+  padding: 10px;
+}
+.card .h3{
+  font-size: 16px;
+}
+.card .p{
+  font-size: 14px;
+  color: #666666;
+  margin: 15px 0;
+  line-height: 1.5;
+}
+.card .date{
+  font-size: 12px;
+  color: #999999;
+}
+.card:nth-child(even){
+  background: #ffffff;
+}
