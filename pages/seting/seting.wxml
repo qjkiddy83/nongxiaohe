@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="main">
+  <text class="h1">{{title}}限值设置</text>
+
+  <text class="tip">单位：摄氏度</text>
+  <input name="input" placeholder="最大上限" />
+  <input name="input" placeholder="最小下限" />
+
+  <button type="primary" bindtap="submitSet"> 确认设置 </button>
+</view>

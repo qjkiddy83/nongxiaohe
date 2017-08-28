@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/monitor/monitor",
+    "pages/seting/seting",
     "pages/msgs/msgs",
     "pages/index/index",
     "pages/home/home"
