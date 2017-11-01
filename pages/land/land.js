@@ -32,24 +32,6 @@ Page({
   onLoad: function () {
     var windowWidth = 320;
     var self = this;
-    wx.request({
-      url: 'http://192.168.15.10:8088/',
-      success:function(res){
-        let result = res.data;
-        if(!result.status){
-          wx.showModal({
-            content: '获取网关列表失败',
-            showCancel:false
-          })
-          return;
-        }
-        self.setData({
-          gateway: result.data.gateway,
-          farm : result.data.farm,
-          msg : result.data.msg
-        })
-      }
-    })
     try {
       var res = wx.getSystemInfoSync();
       windowWidth = res.windowWidth;
@@ -59,5 +41,28 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
+    // http://192.168.15.10:8088/work/land
+    this._load();
+  },
+  _load : function(){
+    var self = this;
+    wx.request({
+      url: "http://192.168.15.10:8088/work/land",
+      success: function (res) {
+        let result = res.data;
+        if (!result.status) {
+          wx.showModal({
+            content: '获取数据失败',
+            showCancel: false
+          })
+          return;
+        }
+        console.log(result.data)
+        self.setData({
+          list: result.data.list,
+          farm: result.data.setting.farm
+        })
+      }
+    })
   }
 })

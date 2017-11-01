@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view class="main">
+  <view class="group">
+    <navigator class="button primary" url="../batch_add/batch_add"> 添加溯源批次 </navigator>
+  </view>
+  <view class="group">
+    <navigator wx:for="{{list}}" class="input" url="../batch_add/batch_add?id={{item.id}}"> {{item.zzdates}} ／ {{item.name}} <b>></b></navigator>
+  </view>
+</view>

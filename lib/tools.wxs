@@ -1,0 +1,27 @@
+var unit = function (d) {
+  // return d.replace('%','');
+  return encodeURIComponent(d);
+}
+
+var state = function (n, max, min) {
+  if (n > max) {
+    return "上限超标"
+  } else if (n < min) {
+    return "下限超标"
+  } else {
+    return "正常"
+  }
+}
+var stateCls = function (n, max, min) {
+  if (n > max || n < min) {
+    return "status-error"
+  } else {
+    return "status-success"
+  }
+}
+
+module.exports = {
+  unit: unit,
+  state: state,
+  stateCls: stateCls
+};

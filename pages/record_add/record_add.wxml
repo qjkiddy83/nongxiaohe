@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<view class="main">
+  <text class="h1">记录农事</text>
+  <view class="group">
+    <text class="tip">劳作照片（可不填）</text>
+    <view class="img">
+      <block wx:for="{{imgs}}">
+        <image mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}"></image>
+      </block>
+      <view class="upload" bindtap="imgupload" style="width:{{imgW}}px;height:{{imgW}}px;line-height:{{imgW}}px;margin-right:{{(imgs.length+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;">+</view>
+    </view>
+  </view>
+  <view class="group">
+    <text class="tip">农事方式选择</text>
+    <radio-group class="radio-group" bindchange="categoryChange">
+      <label class="radio" wx:for='{{category}}'>
+          <radio value='{{item.id}}' checked='{{category_id==item.id?true:false}}'></radio><text>{{item.name}}</text>
+        </label>
+    </radio-group>
+  </view>
+  <view class="group">
+    <text class="tip">选择地块</text>
+    <radio-group class="radio-group" bindchange="landChange">
+      <label class="radio" wx:for='{{land}}'>
+          <radio value='{{item.id}}' checked='{{land_id==item.id?true:false}}'></radio><text>{{item.name}}</text>
+        </label>
+    </radio-group>
+  </view>
+  <view class="group">
+    <text class="tip">农资采购</text>
+    <label class="label-input">
+        <text>农事时间</text>
+        <picker mode="date" value="{{workdate}}" bindchange="dateChange">
+          <view class="input">{{workdate}}</view>
+        </picker>
+      </label>
+    <label class="label-input">
+        <text>劳作内容</text>
+        <view class="input">
+          <input name="input" value='{{content}}' bindinput='contentUpdate' placeholder="如：肥料名、药品明、劳动方式" />
+        </view>
+      </label>
+    <label class="label-input">
+        <text>劳作数量</text>
+        <view class="input">        
+          <input name="input" value='{{amount}}' bindinput='amountUpdate' placeholder="如：30L/亩" />
+        </view>
+      </label>
+  </view>
+  <view class="group">
+    <button type="primary" bindtap="submit"> 确认 </button>
+  </view>
+</view>

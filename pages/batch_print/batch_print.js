@@ -3,7 +3,11 @@
 var app = getApp()
 Page({
   data: {
-    success : false
+    printer: [
+      "1#打印机",
+      "2#打印机"
+    ],
+    printer_index : 0
   },
   //事件处理函数
   submitSet: function() {
@@ -28,10 +32,23 @@ Page({
       }
     })
   },
-  onLoad: function (options) {
+  printerChange: function (e) {
     this.setData({
-      type : options.type,
-      title : options.tit
+      printer_index: e.detail.value
     })
+  },
+  onLoad: function (options) {
+    var windowWidth = 320;
+    var self = this;
+    try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+      self.setData({
+        imgW: (windowWidth * 0.92 - windowWidth * 0.04 * 3) / 4,
+        imgR: windowWidth * 0.04
+      })
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
   }
 })

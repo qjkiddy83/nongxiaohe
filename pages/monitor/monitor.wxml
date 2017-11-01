@@ -8,34 +8,29 @@
   <view class="tabcont" style="display:{{tab==0?'block':'none'}}">
     <view class="group">
       <text class="tip">设备状态</text>
-      <navigator class="input" url="../seting/seting?type=0&tit=网关状态"> 网关状态： <b><i class="status-success">正常</i></b></navigator>
-      <navigator class="input" url="../seting/seting?type=1&tit=四要素电量"> 四要素电量： <b>4.1V ></b></navigator>
+      <view class="input"> 网关状态： <b><i class="{{home.info.state?'status-success':'status-error'}}">{{home.info.state?"正常":"离线"}}</i></b></view>
+      <view class="input"> 四要素电量： <b>{{home.info.power||0}} V ></b></view>
     </view>
     <view class="group">
       <text class="tip">实时图像  2016.8.29 12:50</text>
-      <image src=""></image>
+      <image src="{{home.pic.value}}"></image>
     </view>
     <view class="group">
       <text class="tip">设备采集</text>
-      <navigator class="input" url="../seting/seting?type=2&tit=温度"> 温度 28 ℃ <b><i class="status-success">正常</i> ></b></navigator>
-      <navigator class="input" url="../seting/seting?type=3&tit=湿度"> 湿度 46 %RH <b><i class="status-error">离线</i> ></b></navigator>
-      <navigator class="input" url="../seting/seting?type=4&tit=光照"> 光照 780 LUX <b><i class="status-error">下限超标</i> ></b></navigator>
-      <navigator class="input" url="../seting/seting?type=5&tit=二氧化碳"> 二氧化碳 410 PPM <b><i class="status-error">上限超标</i> ></b></navigator>
-      <navigator class="input" url="../seting/seting?type=6&tit=土壤温度"> 土壤温度 28 ℃ <b><i class="status-success">正常</i> ></b></navigator>
-      <navigator class="input" url="../seting/seting?type=7&tit=土壤湿度"> 土壤湿度 46 %RH <b><i class="status-error">离线</i> ></b></navigator>
-      <navigator class="input" url="../seting/seting?type=8&tit=PM2.5"> PM2.5 270 <b><i class="status-error">下限超标</i> ></b></navigator>
+      <wxs src="../../lib/tools.wxs" module="tools" />
+      <navigator wx:for="{{home.device}}" class="input" url="../monitor_seting/monitor_seting?id={{item.id}}&tit={{item.name}}&unit={{tools.unit(item.unit)}}"> {{item.name}} {{item.value}} {{item.unit}} <b><i class="{{tools.stateCls(item.value,item.max,item.min)}}">{{tools.state(item.value,item.max,item.min)}}</i> ></b></navigator>
     </view>
   </view>
   <view class="tabcont" style="display:{{tab==1?'block':'none'}}">
     <view class="group">
       <text class="tip">设备周期选择</text>
-      <picker bindchange="deviceChange" value="{{device_index}}" range="{{device}}">
-        <view class="input">{{device[device_index]}} <b>></b></view>
+      <picker bindchange="deviceChange" value="{{index}}" range-key="name" range="{{statistics.device}}">
+        <view class="input">{{statistics.device[device_index||0].name}}<b>></b></view>
       </picker>
-      <picker bindchange="dataCycleChange" value="{{data_cycle_index}}" range="{{data_cycle}}">
-        <view class="input">{{data_cycle[data_cycle_index]}} <b>></b></view>
+      <picker bindchange="dataCycleChange" value="{{index}}" range="{{statistics.group}}" range-key='name'>
+        <view class="input">{{statistics.group[data_cycle_index||0].name}} <b>></b></view>
       </picker>
-      <button class="mt1" type="primary">查看曲线</button>
+      <button class="mt1" type="primary" bindtap='showCharts'>查看曲线</button>
     </view>
     <view class="group">
       <text class="tip">周期曲线</text>
@@ -54,58 +49,20 @@
         </picker>
       </view>
       <view class="group">
-        <view class="pic">
-          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
-          <text class="tip">2016.8.29 12:50</text>
-        </view>
-        <view class="pic">
-          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
-          <text class="tip">2016.8.29 12:50</text>
-        </view>
-        <view class="pic">
-          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
-          <text class="tip">2016.8.29 12:50</text>
-        </view>
-        <view class="pic">
-          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
-          <text class="tip">2016.8.29 12:50</text>
-        </view>
-        <view class="pic">
-          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
-          <text class="tip">2016.8.29 12:50</text>
-        </view>
-        <view class="pic">
-          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
-          <text class="tip">2016.8.29 12:50</text>
-        </view>
-        <view class="pic">
-          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
-          <text class="tip">2016.8.29 12:50</text>
-        </view>
-        <view class="pic">
-          <image mode="widthFix" src="https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824"></image>
-          <text class="tip">2016.8.29 12:50</text>
+        <view class="pic" wx:for="{{pics}}">
+          <image mode="widthFix" src="{{item.pic}}"></image>
+          <text class="tip">{{item.cdates}}</text>
         </view>
       </view>
     </scroll-view>
   </view>
   <view class="tabcont logs" style="display:{{tab==3?'block':'none'}}">
+  <scroll-view class="msglist" scroll-y bindscrolltolower="lowermsg" style="height:{{scrHeight}}px">
     <text class="tip">警告提醒</text>
-    <view class="card">
-      <view class="p">温室一号，温度低于36摄氏度，请及时控制温度处理。</view>
-      <view class="date">2015.10.29 18:10</view>
+    <view class="card" wx:for="{{msg}}">
+      <view class="p">{{item.content}}</view>
+      <view class="date">{{item.cdates}}</view>
     </view>
-    <view class="card">
-      <view class="p">温室一号，温度低于36摄氏度，请及时控制温度处理。</view>
-      <view class="date">2015.10.29 18:10</view>
-    </view>
-    <view class="card">
-      <view class="p">温室一号，温度低于36摄氏度，请及时控制温度处理。</view>
-      <view class="date">2015.10.29 18:10</view>
-    </view>
-    <view class="card">
-      <view class="p">温室一号，温度低于36摄氏度，请及时控制温度处理。</view>
-      <view class="date">2015.10.29 18:10</view>
-    </view>
+    </scroll-view>
   </view>
 </view>

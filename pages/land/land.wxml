@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view class="main">
+  <view class="group">
+    <navigator class="button primary" url="../land_add/land_add"> 添加地块 </navigator>
+  </view>
+  <view class="group">
+    <navigator wx:for="{{list}}" class="input" url="../land_add/land_add?id={{item.id}}&name={{item.name}}"> {{item.name}} <b>></b></navigator>
+  </view>
+</view>

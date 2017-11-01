@@ -3,31 +3,39 @@
 var app = getApp()
 Page({
   data: {
-    success : false
+    success: true
   },
   //事件处理函数
-  bindDevice: function() {
-    var rand = Math.random()*10;
+  bindDevice: function () {
+    var rand = Math.random() * 10;
     var self = this;
-    if(rand<5){
-      wx.showModal({
-        title: '提示',
-        content: '手机号或者安全码错误',
-        confirmText:'知道了',
-        showCancel:false,
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          } else if (res.cancel) {
-            console.log('用户点击取消')
+    wx.request({
+      url: 'https://api.nongxiaohe.com/', //仅为示例，并非真实的接口地址
+      data: {
+
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        self.setData({
+          success: true
+        })
+      },
+      fail: function () {
+        wx.showModal({
+          title: '提示',
+          content: '手机号或者安全码错误',
+          confirmText: '知道了',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            }
           }
-        }
-      })
-    }else{
-      self.setData({
-        success : true
-      })
-    }
+        })
+      }
+    })
   },
   onLoad: function () {
     var windowWidth = 320;
@@ -36,7 +44,7 @@ Page({
       var res = wx.getSystemInfoSync();
       windowWidth = res.windowWidth;
       self.setData({
-        wwidth : windowWidth
+        wwidth: windowWidth
       })
     } catch (e) {
       console.error('getSystemInfoSync failed!');

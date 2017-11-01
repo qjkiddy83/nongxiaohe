@@ -2,30 +2,10 @@
 page{
   background: #f2f2f2;
 }
-.tabs {
-  display: flex;
-  width: 90%;
-  padding: 0 5%;
-  border-bottom: 1px solid #000;
-  margin-bottom: 1rem;
-}
-.tabs .li{
-  flex: 1;
-  padding: 5px;
-  font-size: 16px;
-  text-align: center;
-  line-height: 40px;
-  white-space: nowrap;
-}
-.tabs .li.cur{
-  color: rgb(0, 153, 0);
-  border-bottom: 1px solid rgb(0, 153, 0);
-  margin-bottom: -2px;
-}
 .h1{
   display: block;
   text-align: center;
-  margin: 4rem auto 2rem;
+  margin: 2rem auto 0;
   font-size: 26px;
 }
 input{
@@ -83,15 +63,12 @@ button{
   overflow:hidden;
   color:#000000;
   background-color:#F8F8F8;
-  margin-top: 3rem;
+  margin-top: 1rem;
   width: 60%;
 }
 .button.primary{
   color:#FFFFFF;
   background-color:#1AAD19;
-}
-button.mt1,.button.mt1{
-  margin-top: 1rem;
 }
 .input{
   position: relative;
@@ -120,10 +97,6 @@ button.mt1,.button.mt1{
   line-height: 20px;
   text-align: center;
 }
-.input.superscript i{
-  display: inline-block;
-  vertical-align: middle;
-}
 .group{
   margin-bottom: 1rem;
 }
@@ -133,57 +106,4 @@ button.mt1,.button.mt1{
 .group .box .button{
   flex: 1;
   margin: 0 2% 20px;
-}
-image{
-  width: 100%;
-  background: #fff;
-}
-.status-success{
-  color: rgb(0, 153, 0);
-}
-.status-error{
-  color: rgb(204, 0, 0);
-}
-.canvas{
-  background: #fff;
-}
-.canvas .tip{
-  padding:1rem 0;
-  text-align: center;
-}
-.piclist{
-  padding-left:10px;
-  box-sizing:border-box;
-  position: absolute;
-  height:74%;
-}
-.pic{
-  width:50%;
-  display:inline-block;
-  box-sizing:border-box;
-  padding:0 10px 0 0;
-}
-.pic .tip{
-  text-align: center;
-}
-.msglist{
-  box-sizing:border-box;
-  position: absolute;
-  height:74%;
-}
-.card{
-  margin-bottom: 1px;
-  background: #ffffff;
-  padding: 2% 4%;
-  box-sizing: border-box;
-}
-.card .p{
-  font-size: 14px;
-  color: #666666;
-  margin: 15px 0;
-  line-height: 1.5;
-}
-.card .date{
-  font-size: 12px;
-  color: #999999;
 }

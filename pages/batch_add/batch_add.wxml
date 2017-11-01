@@ -1,0 +1,61 @@
+<!--index.wxml-->
+<view class="main">
+  <!-- <view class="group" wx:if="{{id}}">
+    <image class="qrcode" mode="scaleToFill" src="{{qrcode}}"></image>
+    <navigator class="button primary" url="../batch_print/batch_print"> 下载溯源码 </navigator>
+  </view> -->
+  <form bindsubmit='formSubmit'>
+    <view class="group">
+      <text class="tip">劳作照片（可不填）</text>
+      <view class="img">
+        <checkbox-group name="imgs" style="display:none">
+          <checkbox wx:for="{{imgs}}" value="{{item}}" checked="true" />
+        </checkbox-group>
+        <block wx:for="{{imgs}}">
+          <image mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}"></image>
+        </block>
+        <navigator class="upload" url="/pages/land_pics/land_pics" style="width:{{imgW}}px;height:{{imgW}}px;line-height:{{imgW}}px;margin-right:{{(imgs.length+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;">+</navigator>
+      </view>
+    </view>
+    <view class="group">
+      <label class="label-input">
+        <text>产品名称</text>
+        <view class="input">
+          <input name="name" value='{{name}}' placeholder="请输入" />
+        </view>
+      </label>
+      <label class="label-input">
+        <text>种植时间</text>
+        <picker name="zzdates" mode="date" value="{{zzdates}}" bindchange="startDateChange">
+          <view class="input">{{zzdates}}</view>
+        </picker>
+      </label>
+      <label class="label-input">
+        <text>采收时间</text>
+        <picker name="csdates" mode="date" value="{{csdates}}" bindchange="endDateChange">
+          <view class="input">{{csdates}}</view>
+        </picker>
+      </label>
+    </view>
+    <view class="group">
+      <text class="tip">数据设备选择</text>
+      <radio-group name="device_id" class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for='{{devicelist}}'>
+          <radio value='{{item.id}}' checked='{{gateway_id==item.id?true:false}}'></radio>
+          <text>{{item.name}}</text>
+        </label>
+      </radio-group>
+    </view>
+    <view class="group">
+      <text class="tip">地块选择</text>
+      <radio-group name="land" class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for='{{landlist}}'>
+          <radio value='{{item.id}}' checked='{{land_id==item.id?true:false}}'></radio><text>{{item.name}}</text>
+        </label>
+      </radio-group>
+    </view>
+    <view class="group">
+      <button type="primary" formType='submit'> 确认 </button>
+    </view>
+  </form>
+</view>

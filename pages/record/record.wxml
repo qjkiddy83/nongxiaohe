@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="main">
+  <text class="h1">农事管理记录</text>
+  <view class="group">
+    <navigator class="button primary" url="../record_add/record_add"> 记录农事 </navigator>
+  </view>
+  <view class="group">
+    <navigator data-id='{{item.id}}' wx:for="{{records.list}}" class="input" url="../record_add/record_add?id={{item.id}}"> {{item.name}} <b>></b></navigator>
+  </view>
+</view>

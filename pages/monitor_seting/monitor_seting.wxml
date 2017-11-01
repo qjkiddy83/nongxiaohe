@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="main">
+  <text class="h1">{{title}}限值设置</text>
+
+  <text class="tip">单位：{{unit}}</text>
+  <form bindsubmit="submitSet">
+  <input name="id" value='{{id}}' style='display:none;' />
+  <input type='number' name="update_max" placeholder="最大上限" />
+  <input type='number' name="update_min" placeholder="最小下限" />
+
+  <button formType="submit" type="primary" > 确认设置 </button>
+  </form>
+</view>

@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="main">
+  <text class="h1">{{name}}</text>
+
+  <view class="group">
+    <input name="input" bindinput='nameUpdate' placeholder="地块名称" value="{{name}}"/>
+  </view>
+  <button type="primary" bindtap="submitSet" data-act="ok"> 确定 </button>
+  <button wx:if="{{id}}" type="" bindtap="submitSet" data-act="del"> 删除 </button>
+  <button type="" bindtap="submitSet" data-act="cancel"> 取消 </button>
+</view>
