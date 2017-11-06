@@ -23,7 +23,7 @@ Page({
   _load : function(){
     var self = this;
     wx.request({
-      url: "http://192.168.15.10:8088/origin",
+      url: app.globalData.api+"/origin",
       success: function (res) {
         let result = res.data;
         if (!result.status) {

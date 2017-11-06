@@ -8,7 +8,7 @@ Page({
   //事件处理函数
   submitSet: function (e) {
     wx.request({
-      url: 'http://192.168.15.10:8088/device/set',
+      url: app.globalData.api +'/device/set',
       data: e.detail.value,
       method: "POST",
       header: {

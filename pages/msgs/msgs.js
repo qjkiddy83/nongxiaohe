@@ -18,7 +18,7 @@ Page({
     pagelock = 1;
 
     wx.request({
-      url: 'http://192.168.15.10:8088/farm/msg',
+      url: app.globalData.api+'/farm/msg',
       data: {
         page: parseInt(this.data.msgpage.current) + 1
       },
@@ -53,7 +53,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://192.168.15.10:8088/farm/msg',
+      url: app.globalData.api+'/farm/msg',
       success:function(res){
         let result = res.data;
         if (!result.status) {

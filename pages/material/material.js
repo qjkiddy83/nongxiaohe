@@ -10,7 +10,7 @@ Page({
     var self = this,formData = e.detail.value;
     console.log(formData)
     wx.request({
-      url: 'http://192.168.15.10:8088/farm',
+      url: app.globalData.api +'/farm',
       data: {
         id: self.data.id,
         update_name: formData.name,
@@ -46,7 +46,7 @@ Page({
         var tempFilePaths = res.tempFilePaths
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: 'http://192.168.15.10:8088/upload', //仅为示例，非真实的接口地址
+          url: app.globalData.api +'/upload', //仅为示例，非真实的接口地址
           filePath: tempFilePaths[0],
           name: 'file',
           formData: {
@@ -78,7 +78,7 @@ Page({
     }
 
     wx.request({
-      url: "http://192.168.15.10:8088/farm",
+      url: app.globalData.api +"/farm",
       success:function(res){
         let result = res.data;
         if (!result.status) {

@@ -14,7 +14,7 @@ Page({
     var self = this, formData = e.detail.value;
     console.log(formData);
     wx.request({
-      url: 'http://192.168.15.10:8088/origin',
+      url: app.globalData.api+'/origin',
       data: {
         id: self.data.id||"",	
         update_name: formData.name,	
@@ -70,7 +70,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: 'http://192.168.15.10:8088/upload', //仅为示例，非真实的接口地址
+          url: app.globalData.api +'/upload', //仅为示例，非真实的接口地址
           filePath: tempFilePaths[0],
           name: 'file',
           formData: {
@@ -102,7 +102,7 @@ Page({
     }
 
     wx.request({
-      url: 'http://192.168.15.10:8088/device/list',
+      url: app.globalData.api +'/device/list',
       success: function (res) {
         let result = res.data;
         if (!result.status) {
@@ -120,7 +120,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://192.168.15.10:8088/work/land',
+      url: app.globalData.api +'/work/land',
       success: function (res) {
         let result = res.data;
         if (!result.status) {
@@ -140,7 +140,7 @@ Page({
     if(options.id){
       // console.log(options.id)
       wx.request({
-        url: "http://192.168.15.10:8088/origin/info",
+        url: app.globalData.api +"/origin/info",
         data : {
           id : options.id
         },

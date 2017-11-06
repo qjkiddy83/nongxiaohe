@@ -10,7 +10,7 @@ Page({
     bigShow : false,
     bigIndex:'',
     bigSelected : false,
-    bigPic : 'https://mp.weixin.qq.com/debug/wxadoc/dev/image/cat/0.jpg?t=2017824'
+    bigPic : ''
   },
   //事件处理函数
   imgTap: function (e) {
@@ -48,7 +48,7 @@ Page({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: 'http://192.168.15.10:8088/upload', //仅为示例，非真实的接口地址
+          url: app.globalData.api +'/upload', //仅为示例，非真实的接口地址
           filePath: tempFilePaths[0],
           name: 'file',
           formData: {
@@ -64,7 +64,7 @@ Page({
               list: _list
             })
             wx.request({
-              url: 'http://192.168.15.10:8088/work/land_pic',
+              url: app.globalData.api +'/work/land_pic',
               data: {
                 update_land_id: e.currentTarget.dataset.upfarm_id,
                 update_pic: result.data.src
@@ -114,7 +114,7 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
     wx.request({
-      url: "http://192.168.15.10:8088/work/land_pic",
+      url: app.globalData.api +"/work/land_pic",
       success: function (res) {
         let result = res.data;
         if (!result.status) {

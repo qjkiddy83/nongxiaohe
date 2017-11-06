@@ -33,7 +33,7 @@ Page({
     var windowWidth = 320;
     var self = this;
     wx.request({
-      url: 'http://192.168.15.10:8088/',
+      url: app.globalData.api,
       success:function(res){
         let result = res.data;
         if(!result.status){

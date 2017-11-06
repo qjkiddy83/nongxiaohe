@@ -40,7 +40,7 @@ Page({
     switch (e.target.dataset.tab) {
       case 1:
         wx.request({
-          url: 'http://192.168.15.10:8088/device/stat',
+          url: app.globalData.api+'/device/stat',
           data: {
             id: self.data.deviceid,
             device: self.data.home.device[0].id
@@ -63,7 +63,7 @@ Page({
         break;
         case 2:
           wx.request({
-            url: 'http://192.168.15.10:8088/device/pic',
+            url: app.globalData.api+'/device/pic',
             data:{
               page:1,
               id: self.data.deviceid,
@@ -89,7 +89,7 @@ Page({
         break;
         case 3:
           wx.request({
-            url: 'http://192.168.15.10:8088/device/msg',
+            url: app.globalData.api+'/device/msg',
             data: {
               page: 1,
               id: self.data.deviceid,
@@ -133,7 +133,7 @@ Page({
   showCharts: function () {
     var self = this;
     wx.request({
-      url: 'http://192.168.15.10:8088/device/stat',
+      url: app.globalData.api+'/device/stat',
       data: {
         id: self.data.deviceid,
         device: self.data.statistics.device[self.data.device_index || 0].id,
@@ -200,7 +200,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://192.168.15.10:8088/device',
+      url: app.globalData.api+'/device',
       data: {
         id: options.id
       },
@@ -223,7 +223,7 @@ Page({
   reload : function(){
     var self = this;
     wx.request({
-      url: 'http://192.168.15.10:8088/device',
+      url: app.globalData.api+'/device',
       data: {
         id: self.data.deviceid
       },
@@ -251,7 +251,7 @@ Page({
     pagelock = 1;
     
     wx.request({
-      url: 'http://192.168.15.10:8088/device/pic',
+      url: app.globalData.api+'/device/pic',
       data: {
         page: parseInt(this.data.picpage.current)+1,
         id: self.data.deviceid,
@@ -286,7 +286,7 @@ Page({
     pagelock = 1;
 
     wx.request({
-      url: 'http://192.168.15.10:8088/device/msg',
+      url: app.globalData.api+'/device/msg',
       data: {
         page: parseInt(this.data.msgpage.current) + 1,
         id: self.data.deviceid,

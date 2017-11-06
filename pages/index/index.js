@@ -10,7 +10,7 @@ Page({
     var rand = Math.random() * 10;
     var self = this;
     wx.request({
-      url: 'https://api.nongxiaohe.com/', //仅为示例，并非真实的接口地址
+      url: app.globalData.api, //仅为示例，并非真实的接口地址
       data: {
 
       },

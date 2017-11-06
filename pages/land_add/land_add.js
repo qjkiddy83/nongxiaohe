@@ -16,7 +16,7 @@ Page({
     switch(act){
       case 'ok':
         wx.request({
-          url: 'http://192.168.15.10:8088/work/land',
+          url: app.globalData.api +'/work/land',
           data: {
             id : self.data.id,
             update_name : self.data.name
@@ -47,7 +47,7 @@ Page({
       case 'del':
         console.log(self.data.id)
         wx.request({
-          url: 'http://192.168.15.10:8088/work/land?id='+self.data.id,
+          url: app.globalData.api +'/work/land?id='+self.data.id,
           method : "DELETE",
           success: function (res) {
             wx.showToast({

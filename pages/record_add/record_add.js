@@ -46,7 +46,7 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: 'http://192.168.15.10:8088/upload', //仅为示例，非真实的接口地址
+          url: app.globalData.api+'/upload', //仅为示例，非真实的接口地址
           filePath: tempFilePaths[0],
           name: 'file',
           formData: {
@@ -66,7 +66,7 @@ Page({
   submit:function(){
     var self = this;
     wx.request({
-      url: 'http://192.168.15.10:8088/work',
+      url: app.globalData.api+'/work',
       data: {
         id:self.data.id||'',
         update_pic: self.data.imgs.join(','),
@@ -117,7 +117,7 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
     wx.request({
-      url: 'http://192.168.15.10:8088/work/land',
+      url: app.globalData.api+'/work/land',
       success:function(res){
         let result = res.data;
         if (!result.status) {
@@ -134,7 +134,7 @@ Page({
       }
     })
     wx.request({
-      url: 'http://192.168.15.10:8088/work/category',
+      url: app.globalData.api+'/work/category',
       success: function (res) {
         let result = res.data;
         if (!result.status) {
@@ -153,7 +153,7 @@ Page({
 
     if(options.id){
       wx.request({
-        url: 'http://192.168.15.10:8088/work/info',
+        url: app.globalData.api+'/work/info',
         data:{
           id:options.id
         },

@@ -41,13 +41,12 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-    // http://192.168.15.10:8088/work/land
     this._load();
   },
   _load : function(){
     var self = this;
     wx.request({
-      url: "http://192.168.15.10:8088/work/land",
+      url: app.globalData.api +"/work/land",
       success: function (res) {
         let result = res.data;
         if (!result.status) {
