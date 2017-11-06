@@ -24,7 +24,7 @@ App({
   },
 
   globalData: {
-    api: 'https://api.nongxiaohe.com/',
+    api: 'https://api.nongxiaohe.com',
     userInfo: null
   }
 })
