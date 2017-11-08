@@ -1,7 +1,9 @@
 //index.js
 //获取应用实例
 var app = getApp()
-var date = new Date();
+var date = new Date(); 
+var uid = wx.getStorageSync('uid');
+
 Page({
   data: {
     imgs: [
@@ -23,6 +25,7 @@ Page({
         update_land: formData.land,	
         update_zzdate: formData.zzdates,	
         update_csdate: formData.csdates,	
+        uid : uid
       },
       method: "POST",
       header: {
@@ -103,6 +106,9 @@ Page({
 
     wx.request({
       url: app.globalData.api +'/device/list',
+      data:{
+        uid : uid
+      },
       success: function (res) {
         let result = res.data;
         if (!result.status) {
@@ -121,6 +127,9 @@ Page({
 
     wx.request({
       url: app.globalData.api +'/work/land',
+      data:{
+        uid : uid
+      },
       success: function (res) {
         let result = res.data;
         if (!result.status) {
@@ -142,7 +151,8 @@ Page({
       wx.request({
         url: app.globalData.api +"/origin/info",
         data : {
-          id : options.id
+          id : options.id,
+          uid : uid
         },
         success: function (res) {
           let result = res.data;

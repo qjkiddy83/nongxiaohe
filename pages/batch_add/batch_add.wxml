@@ -12,7 +12,7 @@
           <checkbox wx:for="{{imgs}}" value="{{item}}" checked="true" />
         </checkbox-group>
         <block wx:for="{{imgs}}">
-          <image mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}"></image>
+          <image wx:if="{{item}}" mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}"></image>
         </block>
         <navigator class="upload" url="/pages/land_pics/land_pics" style="width:{{imgW}}px;height:{{imgW}}px;line-height:{{imgW}}px;margin-right:{{(imgs.length+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;">+</navigator>
       </view>

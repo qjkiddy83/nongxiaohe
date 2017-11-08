@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var uid = wx.getStorageSync('uid');
 Page({
   data: {
     success : false
@@ -24,6 +25,9 @@ Page({
     var self = this;
     wx.request({
       url: app.globalData.api+"/origin",
+      data : {
+        uid: uid
+      },
       success: function (res) {
         let result = res.data;
         if (!result.status) {

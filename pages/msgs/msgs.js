@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var uid = wx.getStorageSync('uid');
 var windowWidth = 320;
 var pagelock = 0;
 Page({
@@ -20,7 +21,8 @@ Page({
     wx.request({
       url: app.globalData.api+'/farm/msg',
       data: {
-        page: parseInt(this.data.msgpage.current) + 1
+        page: parseInt(this.data.msgpage.current) + 1,
+        uid : uid
       },
       success: function (res) {
         let result = res.data;
@@ -54,6 +56,9 @@ Page({
 
     wx.request({
       url: app.globalData.api+'/farm/msg',
+      data:{
+        uid:uid
+      },
       success:function(res){
         let result = res.data;
         if (!result.status) {

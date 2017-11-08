@@ -1,6 +1,8 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var uid = wx.getStorageSync('uid');
+
 Page({
   data: {
   },
@@ -19,7 +21,8 @@ Page({
           url: app.globalData.api +'/work/land',
           data: {
             id : self.data.id,
-            update_name : self.data.name
+            update_name : self.data.name,
+            uid: uid
           },
           method: "POST",
           header: {
@@ -45,9 +48,12 @@ Page({
         })
       break;
       case 'del':
-        console.log(self.data.id)
+        // console.log(self.data.id)
         wx.request({
           url: app.globalData.api +'/work/land?id='+self.data.id,
+          data:{
+            uid : uid
+          },
           method : "DELETE",
           success: function (res) {
             wx.showToast({

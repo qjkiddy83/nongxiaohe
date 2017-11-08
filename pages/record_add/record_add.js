@@ -2,6 +2,8 @@
 //获取应用实例
 var app = getApp()
 var date = new Date();
+var uid = wx.getStorageSync('uid');
+
 Page({
   data: {
     imgs: [],
@@ -74,7 +76,8 @@ Page({
         update_land: self.data.land_id,
         update_workdate: self.data.workdate,
         update_content: self.data.content,
-        update_amount: self.data.amount
+        update_amount: self.data.amount,
+        uid:uid
       },
       method: "POST",
       header: {
@@ -118,6 +121,9 @@ Page({
     }
     wx.request({
       url: app.globalData.api+'/work/land',
+      data:{
+        uid : uid
+      },
       success:function(res){
         let result = res.data;
         if (!result.status) {
@@ -135,6 +141,9 @@ Page({
     })
     wx.request({
       url: app.globalData.api+'/work/category',
+      data:{
+        uid :uid
+      },
       success: function (res) {
         let result = res.data;
         if (!result.status) {
@@ -155,7 +164,8 @@ Page({
       wx.request({
         url: app.globalData.api+'/work/info',
         data:{
-          id:options.id
+          id:options.id,
+          uid:uid
         },
         success: function (res) {
           let result = res.data;

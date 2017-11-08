@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var uid = wx.getStorageSync('uid');
 var lineChart = null;
 var windowWidth = 320;
 var wxCharts = require('../../lib/wxcharts.js');
@@ -43,7 +44,8 @@ Page({
           url: app.globalData.api+'/device/stat',
           data: {
             id: self.data.deviceid,
-            device: self.data.home.device[0].id
+            device: self.data.home.device[0].id,
+            uid:uid
           },
           success(res) {
             let result = res.data;
@@ -67,7 +69,8 @@ Page({
             data:{
               page:1,
               id: self.data.deviceid,
-              search_date :self.data.date
+              search_date :self.data.date,
+              uid:uid
             },
             success:function(res){
               let result = res.data;
@@ -93,7 +96,8 @@ Page({
             data: {
               page: 1,
               id: self.data.deviceid,
-              search_date: self.data.date
+              search_date: self.data.date,
+              uid:uid
             },
             success: function (res) {
               let result = res.data;
@@ -137,7 +141,8 @@ Page({
       data: {
         id: self.data.deviceid,
         device: self.data.statistics.device[self.data.device_index || 0].id,
-        search_group: self.data.statistics.group[self.data.data_cycle_index || 0].id
+        search_group: self.data.statistics.group[self.data.data_cycle_index || 0].id,
+        uid : uid
       },
       success(res) {
         let result = res.data;
@@ -202,7 +207,8 @@ Page({
     wx.request({
       url: app.globalData.api+'/device',
       data: {
-        id: options.id
+        id: options.id,
+        uid:uid
       },
       success(res) {
         let result = res.data;
@@ -213,7 +219,7 @@ Page({
           })
           return;
         }
-        // console.log(result.data)
+        console.log(result.data)
         self.setData({
           home: result.data
         })
@@ -225,10 +231,12 @@ Page({
     wx.request({
       url: app.globalData.api+'/device',
       data: {
-        id: self.data.deviceid
+        id: self.data.deviceid,
+        uid:uid
       },
       success(res) {
         let result = res.data;
+        console.log(result)
         if (!result.status) {
           wx.showModal({
             content: '获取数据失败',
@@ -255,7 +263,8 @@ Page({
       data: {
         page: parseInt(this.data.picpage.current)+1,
         id: self.data.deviceid,
-        search_date: self.data.date
+        search_date: self.data.date,
+        uid:uid
       },
       success: function (res) {
         let result = res.data;
@@ -290,7 +299,8 @@ Page({
       data: {
         page: parseInt(this.data.msgpage.current) + 1,
         id: self.data.deviceid,
-        search_date: self.data.date
+        search_date: self.data.date,
+        uid:uid
       },
       success: function (res) {
         let result = res.data;

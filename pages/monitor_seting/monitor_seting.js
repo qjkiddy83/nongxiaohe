@@ -1,15 +1,19 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var uid = wx.getStorageSync('uid');
+
 Page({
   data: {
     success: false
   },
   //事件处理函数
   submitSet: function (e) {
+    let _data = e.detail.value;
+    _data.uid = uid;
     wx.request({
       url: app.globalData.api +'/device/set',
-      data: e.detail.value,
+      data: _data,
       method: "POST",
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -40,7 +44,9 @@ Page({
     this.setData({
       id: options.id,
       title: options.tit,
-      unit: options.unit
+      unit: options.unit,
+      max:options.max === "null"?'':options.max,
+      min:options.min === "null"?'':options.min
     })
   }
 })

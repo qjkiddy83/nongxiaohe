@@ -9,7 +9,7 @@
     <view class="group">
       <text class="tip">设备状态</text>
       <view class="input"> 网关状态： <b><i class="{{home.info.state?'status-success':'status-error'}}">{{home.info.state?"正常":"离线"}}</i></b></view>
-      <view class="input"> 四要素电量： <b>{{home.info.power||0}} V ></b></view>
+      <view class="input"> 四要素电量： <b>{{home.info.power||0}} V </b></view>
     </view>
     <view class="group">
       <text class="tip">实时图像  2016.8.29 12:50</text>
@@ -18,7 +18,7 @@
     <view class="group">
       <text class="tip">设备采集</text>
       <wxs src="../../lib/tools.wxs" module="tools" />
-      <navigator wx:for="{{home.device}}" class="input" url="../monitor_seting/monitor_seting?id={{item.id}}&tit={{item.name}}&unit={{tools.unit(item.unit)}}"> {{item.name}} {{item.value}} {{item.unit}} <b><i class="{{tools.stateCls(item.value,item.max,item.min)}}">{{tools.state(item.value,item.max,item.min)}}</i> ></b></navigator>
+      <navigator wx:for="{{home.device}}" class="input" url="../monitor_seting/monitor_seting?id={{item.id}}&tit={{item.name}}&unit={{tools.unit(item.unit)}}&max={{item.max}}&min={{item.min}}" > {{item.name}} {{item.value}} {{item.unit}} <b><i class="{{tools.stateCls(item.value,item.max,item.min)}}">{{tools.state(item.value,item.max,item.min)}}</i> ></b></navigator>
     </view>
   </view>
   <view class="tabcont" style="display:{{tab==1?'block':'none'}}">

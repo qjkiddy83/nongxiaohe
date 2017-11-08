@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/home/home",
     "pages/land_pics/land_pics",
     "pages/land_add/land_add",
     "pages/land/land",
@@ -12,8 +13,7 @@
     "pages/record/record",
     "pages/monitor/monitor",
     "pages/monitor_seting/monitor_seting",
-    "pages/msgs/msgs",
-    "pages/home/home"
+    "pages/msgs/msgs"
   ],
   "window": {
     "backgroundTextStyle": "light",

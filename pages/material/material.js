@@ -1,6 +1,8 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var uid = wx.getStorageSync('uid');
+
 Page({
   data: {
     imgs: [],
@@ -17,7 +19,8 @@ Page({
         update_address: formData.address,
         update_master_name: formData.master_name,
         update_tel: formData.tel,
-        update_pic: formData.imgs.join(',')
+        update_pic: formData.imgs.join(','),
+        uid : uid
       },
       method: "POST",
       header: {
@@ -79,6 +82,9 @@ Page({
 
     wx.request({
       url: app.globalData.api +"/farm",
+      data:{
+        uid : uid
+      },
       success:function(res){
         let result = res.data;
         if (!result.status) {

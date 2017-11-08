@@ -24,6 +24,7 @@ App({
   },
 
   globalData: {
+    // api: 'http://192.168.15.10:8088',
     api: 'https://api.nongxiaohe.com',
     userInfo: null
   }

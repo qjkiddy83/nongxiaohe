@@ -2,8 +2,15 @@ var unit = function (d) {
   // return d.replace('%','');
   return encodeURIComponent(d);
 }
+var decodeUnit = function (d) {
+  // return d.replace('%','');
+  return decodeURIComponent(d);
+}
 
 var state = function (n, max, min) {
+  if(!max || !min){
+    return "正常"
+  }
   if (n > max) {
     return "上限超标"
   } else if (n < min) {
@@ -13,6 +20,9 @@ var state = function (n, max, min) {
   }
 }
 var stateCls = function (n, max, min) {
+  if (!max || !min) {
+    return "status-success"
+  }
   if (n > max || n < min) {
     return "status-error"
   } else {
@@ -22,6 +32,7 @@ var stateCls = function (n, max, min) {
 
 module.exports = {
   unit: unit,
+  decodeUnit:decodeUnit,
   state: state,
   stateCls: stateCls
 };
