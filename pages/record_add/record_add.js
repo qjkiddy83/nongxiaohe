@@ -133,7 +133,7 @@ Page({
           })
           return;
         }
-        console.log(result.data)
+        // console.log(result.data)
         self.setData({
           land: result.data.list
         })
@@ -153,7 +153,7 @@ Page({
           })
           return;
         }
-        console.log(result.data)
+        // console.log(result.data)
         self.setData({
           category: result.data.list
         })
@@ -176,7 +176,7 @@ Page({
             })
             return;
           }
-          console.log(result.data)
+          // console.log(result.data)
           self.setData({
             id: options.id,
             imgs: result.data.info.pic.split(','),

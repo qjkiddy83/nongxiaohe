@@ -1,11 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/home/home",
     "pages/land_pics/land_pics",
     "pages/land_add/land_add",
     "pages/land/land",
-    "pages/batch_print/batch_print",
     "pages/batch_add/batch_add",
     "pages/batch/batch",
     "pages/material/material",
