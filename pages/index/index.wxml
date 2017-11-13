@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="main">
+<view class="main" style='display:{{logined?"none":""}}'>
   <view class="login" style="display:{{success?'none':'block'}};">
     <form bindsubmit="bindDevice">
     <text class="h1">农小盒账号绑定登录</text>
@@ -16,6 +16,35 @@
       <text>绑定成功</text>
     </view>
     <text class="tip">下次登录直接进入设备管理界面</text>
-    <navigator class="button primary" open-type="redirect" url="../home/home"> 进入设备管理界面 </navigator>
+    <text class="button primary" bindtap='toHome'> 进入设备管理界面 </text>
+  </view>
+</view>
+<view class="main home" style='display:{{logined?"":"none"}}'>
+  <view class="login">
+    <text class="h1">{{farm.name}}</text>
+    <view class="group">
+      <text class="tip">环境监测</text>
+      <navigator class="input" data-id='{{item.id}}' url="../monitor/monitor?id={{item.id}}" wx:for="{{gateway}}">{{item.name}} <b>></b></navigator>
+    </view>
+    <view class="group">
+      <text class="tip">农事生产</text>
+      <view class="box">
+        <navigator class="button primary" url="../land_pics/land_pics?isfrom_select=0"> 拍作物 </navigator>
+        <navigator class="button primary" url="../record_add/record_add"> 记农事 </navigator>
+        <navigator class="button primary" url="../batch_add/batch_add"> 发批次 </navigator>
+      </view>
+      <navigator class="input" url="../material/material"> 农场资料设置 <b>></b></navigator>
+      <navigator class="input" url="../land/land"> 农场地块设置 <b>></b></navigator>
+      <navigator class="input" url="../record/record"> 农事记录管理 <b>></b></navigator>
+      <navigator class="input" url="../batch/batch"> 农产品溯源批次管理 <b>></b></navigator>
+    </view>
+    <!-- <view class="group">
+      <text class="tip">农资采购</text>
+      <navigator class="input" url=""> 农小盒农资商城 <b>></b></navigator>
+    </view> -->
+    <view class="group">
+      <text class="tip">基础信息</text>
+      <navigator class="input superscript" url="../msgs/msgs"> 消息提醒 <b>{{msg>99?'99+':msg}}</b></navigator>
+    </view>
   </view>
 </view>

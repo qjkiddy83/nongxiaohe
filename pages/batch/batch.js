@@ -43,5 +43,11 @@ Page({
         })
       }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
   }
 })

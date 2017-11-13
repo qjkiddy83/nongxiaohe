@@ -8,19 +8,25 @@
       <input name="master_name" placeholder="联系人" value='{{farm.master_name}}'/>
       <input name="tel" placeholder="联系电话" value='{{farm.tel}}'/>
     </view>
-    <view class="group">
+    <!-- <view class="group">
       <text class="tip">农场照片</text>
       <view class="img">
         <checkbox-group name="imgs" style="display:none">
           <checkbox wx:for="{{imgs}}" value="{{item}}" checked="true" />
         </checkbox-group>
         <block wx:for="{{imgs}}">
-          <image mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}"></image>
+          <image mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}" data-url="{{item}}" bindtap='viewImg'></image>
         </block>
         <view class="upload" bindtap="imgupload" style="width:{{imgW}}px;height:{{imgW}}px;line-height:{{imgW}}px;margin-right:{{(imgs.length+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;">+</view>
       </view>
-    </view>
+    </view> -->
 
     <button type="primary" formType="submit"> 确认设置 </button>
   </form>
+</view>
+
+<view bindtap="closeLayer" class="layer" style='display:{{layer?"block":"none"}}'>
+  <wxs src="../../lib/tools.wxs" module="tools" />
+  <image mode="aspectFit" src="{{tools.bigPic(bigPic)}}"></image>
+  <button type="" catchtap="del"> 删除 </button>
 </view>

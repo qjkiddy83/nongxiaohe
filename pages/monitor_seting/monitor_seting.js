@@ -48,5 +48,11 @@ Page({
       max:options.max === "null"?'':options.max,
       min:options.min === "null"?'':options.min
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
   }
 })

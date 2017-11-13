@@ -1,20 +1,20 @@
 <!--index.wxml-->
 <view class="main">
-  <!-- <view class="group" wx:if="{{id}}">
+  <view class="group" wx:if="{{id}}">
     <image class="qrcode" mode="scaleToFill" src="{{qrcode}}"></image>
-    <navigator class="button primary" url="../batch_print/batch_print"> 下载溯源码 </navigator>
-  </view> -->
+    <view class="button primary" bindtap='downQrcode'> 下载溯源码 </view>
+  </view>
   <form bindsubmit='formSubmit'>
     <view class="group">
-      <text class="tip">劳作照片（可不填）</text>
+      <text class="tip">产品照片（可不填）</text>
       <view class="img">
         <checkbox-group name="imgs" style="display:none">
           <checkbox wx:for="{{imgs}}" value="{{item}}" checked="true" />
         </checkbox-group>
         <block wx:for="{{imgs}}">
-          <image wx:if="{{item}}" mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}"></image>
+          <image wx:if="{{item}}" mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}" data-src="{{item}}" data-index="{{index}}" bindtap='showPic'></image>
         </block>
-        <navigator class="upload" url="/pages/land_pics/land_pics" style="width:{{imgW}}px;height:{{imgW}}px;line-height:{{imgW}}px;margin-right:{{(imgs.length+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;">+</navigator>
+        <navigator class="upload" url="/pages/land_pics/land_pics?utms=batch" style="width:{{imgW}}px;height:{{imgW}}px;line-height:{{imgW}}px;margin-right:{{(imgs.length+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;">+</navigator>
       </view>
     </view>
     <view class="group">
@@ -58,4 +58,16 @@
       <button type="primary" formType='submit'> 确认 </button>
     </view>
   </form>
+</view>
+
+<view bindtap="closeLayer" class="layer" style="display:{{bigShow?'block':'none'}}">
+  <image mode="aspectFit" src="{{bigPic}}"></image>
+  <button type="" catchtap="delPic"> 删除 </button>
+  <text class='tip tcenter'>点击图片关闭大图窗口</text>
+</view>
+
+<view class='layer' wx:if="{{qrcodelayer}}">
+   <image class="qrcode" mode="widthFix" src="{{qrcode}}" bindload='qrcodeloaded'></image>
+    <view class="button primary" bindtap='downQrcode'> 下载溯源码 </view>
+    <view class="button" bindtap='goback'>返回列表</view>
 </view>

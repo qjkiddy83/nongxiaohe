@@ -5,7 +5,7 @@
     <text class="tip">劳作照片（可不填）</text>
     <view class="img">
       <block wx:for="{{imgs}}">
-        <image mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}"></image>
+        <image wx:if="{{item != ''}}" mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item}}"></image>
       </block>
       <view class="upload" bindtap="imgupload" style="width:{{imgW}}px;height:{{imgW}}px;line-height:{{imgW}}px;margin-right:{{(imgs.length+1)%4==0?0:imgR}}px;margin-bottom:{{imgR}}px;">+</view>
     </view>
@@ -37,7 +37,7 @@
     <label class="label-input">
         <text>劳作内容</text>
         <view class="input">
-          <input name="input" value='{{content}}' bindinput='contentUpdate' placeholder="如：肥料名、药品明、劳动方式" />
+          <input name="input" value='{{content}}' bindinput='contentUpdate' placeholder="如：肥料名、药品名、劳动方式" />
         </view>
       </label>
     <label class="label-input">

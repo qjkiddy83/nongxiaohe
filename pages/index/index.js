@@ -1,15 +1,19 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var uid = wx.getStorageSync('uid');
 Page({
   data: {
-    success: false
+    success: false,
+    logined: uid ? true : false
   },
   //事件处理函数
   bindDevice: function (e) {
     var rand = Math.random() * 10;
     var self = this;
-    console.log(e)
+    wx.showLoading({
+      title: '提交中',
+    })
     wx.login({
       success: function (loginres) {
         wx.request({
@@ -51,10 +55,20 @@ Page({
                 }
               }
             })
+          },
+          complete:function(){
+            wx.hideLoading()
           }
         })
       }
     })
+  },
+  toHome:function(){
+    console.log('aaa')
+    this.setData({
+      logined:true
+    })
+    this.getHomeData();
   },
   onLoad: function () {
     var windowWidth = 320;
@@ -68,10 +82,38 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-    if(wx.getStorageSync('uid')){
-      wx.redirectTo({
-        url: '/pages/home/home',
-      })
+    if(uid){
+      this.getHomeData();
+    }
+  },
+  getHomeData:function(){
+    var self = this;
+    wx.request({
+      url: app.globalData.api,
+      data: {
+        uid: uid
+      },
+      success: function (res) {
+        let result = res.data;
+        if (!result.status) {
+          wx.showModal({
+            content: '获取网关列表失败',
+            showCancel: false
+          })
+          return;
+        }
+        self.setData({
+          gateway: result.data.gateway,
+          farm: result.data.farm,
+          msg: result.data.msg
+        })
+      }
+    })
+  },
+  onShareAppMessage:function(){
+    return {
+      title:"农小盒",
+      path:"/pages/index/index"
     }
   }
 })

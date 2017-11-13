@@ -32,6 +32,34 @@ Page({
       total: 1
     }
   },
+  showPicTab:function(){
+    var self = this;
+    wx.request({
+      url: app.globalData.api + '/device/pic',
+      data: {
+        page: 1,
+        id: self.data.deviceid,
+        search_date: self.data.date,
+        uid: uid
+      },
+      success: function (res) {
+        let result = res.data;
+        if (!result.status) {
+          wx.showModal({
+            content: '获取数据失败',
+            showCancel: false
+          })
+          return;
+        }
+        // console.log(result.data.pic)
+
+        self.setData({
+          pics: result.data.pic,
+          picpage: result.data.page
+        })
+      }
+    })
+  },
   //事件处理函数
   tabswitch: function (e) {
     var self = this;
@@ -44,7 +72,7 @@ Page({
           url: app.globalData.api+'/device/stat',
           data: {
             id: self.data.deviceid,
-            device: self.data.home.device[0].id,
+            device: self.data.home.device[0]?self.data.home.device[0].id:'',
             uid:uid
           },
           success(res) {
@@ -64,31 +92,7 @@ Page({
         })
         break;
         case 2:
-          wx.request({
-            url: app.globalData.api+'/device/pic',
-            data:{
-              page:1,
-              id: self.data.deviceid,
-              search_date :self.data.date,
-              uid:uid
-            },
-            success:function(res){
-              let result = res.data;
-              if (!result.status) {
-                wx.showModal({
-                  content: '获取数据失败',
-                  showCancel: false
-                })
-                return;
-              }
-              // console.log(result.data.pic)
-              
-              self.setData({
-                pics: result.data.pic,
-                picpage :result.data.page
-              })
-            }
-          })
+          this.showPicTab()
         break;
         case 3:
           wx.request({
@@ -132,7 +136,9 @@ Page({
   dateChange: function (e) {
     this.setData({
       date: e.detail.value
-    })
+    },function(){
+        this.showPicTab()
+    }.bind(this))
   },
   showCharts: function () {
     var self = this;
@@ -160,12 +166,15 @@ Page({
   drawCharts: function (data) {
     let categories = [],
       _data = [];
-    data.forEach(function (item, i) {
+    data && data.forEach(function (item, i) {
       categories = JSON.parse(item.data.time)
       _data[i] = {};
       _data[i].name = item.name;
       _data[i].list = JSON.parse(item.data.value)
     })
+    if (!_data[0]){
+      return;
+    }
     new wxCharts({
       canvasId: 'lineCanvas',
       type: 'line',
@@ -322,5 +331,11 @@ Page({
         pagelock = 0;
       }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
   }
 })

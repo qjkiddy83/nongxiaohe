@@ -75,5 +75,16 @@ Page({
         })
       }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
+  },
+  onUnload:function(){
+    let pages = getCurrentPages();
+    
+    pages[pages.length - 2].getHomeData()
   }
 })

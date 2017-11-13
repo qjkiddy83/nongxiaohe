@@ -41,5 +41,11 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
   }
 })

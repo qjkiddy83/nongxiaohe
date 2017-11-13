@@ -6,6 +6,10 @@ var decodeUnit = function (d) {
   // return d.replace('%','');
   return decodeURIComponent(d);
 }
+var bigPic = function (d) {
+  // return d.replace('%','');
+  return d?d.replace('_crop_center.jpg',''):'';
+}
 
 var state = function (n, max, min) {
   if(!max || !min){
@@ -34,5 +38,6 @@ module.exports = {
   unit: unit,
   decodeUnit:decodeUnit,
   state: state,
-  stateCls: stateCls
+  stateCls: stateCls,
+  bigPic:bigPic
 };

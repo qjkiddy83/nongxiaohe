@@ -173,7 +173,8 @@ image{
 }
 .card{
   margin-bottom: 1px;
-  background: #ffffff;
+  /* background: #ffffff; */
+  background: rgba(242, 242, 242, 1);
   padding: 2% 4%;
   box-sizing: border-box;
 }
@@ -186,4 +187,7 @@ image{
 .card .date{
   font-size: 12px;
   color: #999999;
+}
+.card.readed{
+  background: #fff;
 }

@@ -32,6 +32,9 @@ button{
   margin-bottom:10px;
 
 }
+.tip.tcenter{
+  text-align: center
+}
 .msg{
   margin: 4rem auto 3rem;
   text-align: center;
@@ -198,5 +201,5 @@ button{
   height: 70%;
 }
 .submit{
-  margin-top: 3rem;
+  margin: 2rem auto 1rem;
 }

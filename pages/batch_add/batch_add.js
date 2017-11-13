@@ -15,6 +15,13 @@ Page({
   formSubmit: function (e) {
     var self = this, formData = e.detail.value;
     console.log(formData);
+    if (!formData.name || !formData.device_id || !formData.land || !formData.zzdates || !formData.csdates){
+      wx.showModal({
+        content: '请填写必须的资料',
+        showCancel:false
+      })
+      return false;
+    }
     wx.request({
       url: app.globalData.api+'/origin',
       data: {
@@ -34,17 +41,44 @@ Page({
       success: function (res) {
         let message = "提交成功"
 
-        if (!res.data.status) {
+        if (res.data.status != 1) {
           message = "提交失败"
         }
         wx.showToast({
           title: message,
           complete:function(){
-            if (res.data.status) {
-              var pages = getCurrentPages();
-              pages[pages.length - 2]._load();
-              wx.navigateBack({
-                delta: 1
+            if (res.data.status == 1) {
+              // var pages = getCurrentPages();
+              // pages[pages.length - 2]._load();
+              // wx.navigateBack({
+              //   delta: 1
+              // })
+              console.log(res)
+              wx.request({
+                url: app.globalData.api + "/origin/info",
+                data: {
+                  id: res.data.data.id,
+                  uid: uid
+                },
+                success: function (res) {
+                  let result = res.data;
+                  if (!result.status) {
+                    wx.showModal({
+                      content: '获取数据失败',
+                      showCancel: false
+                    })
+                    return;
+                  }
+                  // console.log(result.data)
+                  let _info = result.data.info;
+                  self.setData({
+                    qrcode : _info.qrcode,
+                    qrcodelayer : true
+                  });
+                  wx.showLoading({
+                    title: '加载中...',
+                  })
+                }
               })
             }
           }
@@ -61,6 +95,26 @@ Page({
   endDateChange: function (e) {
     this.setData({
       csdates: e.detail.value
+    })
+  },
+  showPic:function(e){
+    this.setData({
+      bigPic:e.currentTarget.dataset.src,
+      bigShow:true,
+      bigIndex:e.currentTarget.dataset.index
+    })
+  },
+  closeLayer:function(){
+    this.setData({
+      bigShow:false
+    })
+  },
+  delPic:function(e){
+    let imgs = this.data.imgs;
+    imgs.splice(this.data.bigIndex,1);
+    this.setData({
+      imgs : imgs,
+      bigShow:false
     })
   },
   imgupload:function(){
@@ -89,6 +143,23 @@ Page({
         })
       }
     })
+  },
+  downQrcode:function(e){
+    wx.downloadFile({
+      url: this.data.qrcode, //仅为示例，并非真实的资源
+      success: function (res) {
+        if (res.statusCode === 200) {
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+            success(res) {
+            }
+          })
+        }
+      }
+    })
+  },
+  qrcodeloaded:function(){
+    wx.hideLoading()
   },
   onLoad: function (options) {
     var windowWidth = 320;
@@ -177,5 +248,20 @@ Page({
         zzdates: [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-')
       })
     }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
+  },
+  onUnload:function(){
+    var pages = getCurrentPages();
+    pages[pages.length - 2]._load();
+  },
+  goback:function(){
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

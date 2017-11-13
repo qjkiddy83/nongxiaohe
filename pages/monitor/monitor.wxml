@@ -2,17 +2,17 @@
 <view class="main">
   <view class="tabs">
     <block wx:for="{{tabs}}">
-      <view class="li {{index==tab?'cur':''}}" data-tab="{{index}}" bindtap="tabswitch">{{item.text}}</view>
+      <view class="li {{index==tab?'cur':''}}" style="display:{{index==2 && !home.pic.value?'none':''}}" data-tab="{{index}}" bindtap="tabswitch">{{item.text}}</view>
     </block>
   </view>
   <view class="tabcont" style="display:{{tab==0?'block':'none'}}">
     <view class="group">
       <text class="tip">设备状态</text>
       <view class="input"> 网关状态： <b><i class="{{home.info.state?'status-success':'status-error'}}">{{home.info.state?"正常":"离线"}}</i></b></view>
-      <view class="input"> 四要素电量： <b>{{home.info.power||0}} V </b></view>
+      <view class="input">  网关电压： <b>{{home.info.power||0}} V </b></view>
     </view>
-    <view class="group">
-      <text class="tip">实时图像  2016.8.29 12:50</text>
+    <view class="group" wx:if="{{home.pic.value}}">
+      <text class="tip">实时图像  {{home.pic.cdates}}</text>
       <image src="{{home.pic.value}}"></image>
     </view>
     <view class="group">
@@ -35,7 +35,7 @@
     <view class="group">
       <text class="tip">周期曲线</text>
       <view class="canvas">
-        <text class="tip">两条曲线，一条每天最高，一条每天最低</text>
+        <!-- <text class="tip">两条曲线，一条每天最高，一条每天最低</text> -->
         <canvas style="width: {{wwidth}}px; height: {{wwidth*3/4}}px;" canvas-id="lineCanvas"></canvas>
       </view>
     </view>
@@ -59,7 +59,7 @@
   <view class="tabcont logs" style="display:{{tab==3?'block':'none'}}">
   <scroll-view class="msglist" scroll-y bindscrolltolower="lowermsg" style="height:{{scrHeight}}px">
     <text class="tip">警告提醒</text>
-    <view class="card" wx:for="{{msg}}">
+    <view class="card {{item.status?'readed':''}}" wx:for="{{msg}}">
       <view class="p">{{item.content}}</view>
       <view class="date">{{item.cdates}}</view>
     </view>

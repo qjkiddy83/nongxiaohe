@@ -16,10 +16,11 @@ Page({
   },
   //事件处理函数
   imgTap: function (e) {
-    console.log(e.currentTarget.dataset)
+    // console.log(e.currentTarget.dataset)
     this.setData({
       bigShow : true,
       bigPic : e.currentTarget.dataset.src,
+      bigId: e.currentTarget.dataset.id,
       bigIndex : e.currentTarget.dataset.index,
       bigSelected : e.currentTarget.dataset.bigselected
     })
@@ -30,7 +31,31 @@ Page({
     })
   },
   del:function(e){
-    console.log(e)
+    // console.log(e)
+    let self = this;
+    console.log(self.data.bigId)
+    wx.request({
+      url: app.globalData.api + '/work/land_pic?id=' + self.data.bigId,
+      data:{
+      },
+      method:'DELETE',
+      success:function(res){
+        if(res.data.status == 1){
+          let _list = self.data.list;
+          let idx = self.data.bigIndex.split('-');
+          _list[idx[0]].pic.splice(idx[1],1)
+          // console.log(_list[idx[0]].pic)
+          self.setData({
+            list: _list,
+            bigShow:false
+          })
+        }else{
+          wx.showToast({
+            title: '删除失败'
+          })
+        }
+      }
+    })
   },
   select:function(e){
     let _list = this.data.list; 
@@ -61,7 +86,7 @@ Page({
             let _list = self.data.list;
             let idx = e.currentTarget.dataset.upindex;
             _list[idx].pic.push({pic:result.data.src})
-            console.log(_list[idx].pic)
+            // console.log(_list[idx].pic)
             self.setData({
               list: _list
             })
@@ -111,7 +136,8 @@ Page({
       self.setData({
         imgW: (windowWidth * 0.92 - windowWidth * 0.04 * 2) / 3,
         imgR: windowWidth * 0.04,
-        isfrom_select: options.isfrom_select
+        isfrom_select: options.isfrom_select,
+        utms:options.utms
       })
     } catch (e) {
       console.error('getSystemInfoSync failed!');
@@ -136,5 +162,11 @@ Page({
         })
       }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
   }
 })

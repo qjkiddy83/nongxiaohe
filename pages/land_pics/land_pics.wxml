@@ -6,7 +6,7 @@
       <text class="tip">{{farm.name}}</text>
       <view class="img">
         <view class='imgbox' wx:for="{{farm.pic}}">
-          <image bindtap="imgTap" mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%3==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item.pic}}" data-src="{{item.pic}}" data-bigselected="{{item.selected}}" data-index="{{farm_index}}-{{index}}"></image>
+          <image bindtap="imgTap" mode="scaleToFill" style="width:{{imgW}}px;height:{{imgW}}px;margin-right:{{(index+1)%3==0?0:imgR}}px;margin-bottom:{{imgR}}px;" src="{{item.pic}}" data-src="{{item.pic}}" data-bigselected="{{item.selected}}" data-id="{{item.id}}" data-index="{{farm_index}}-{{index}}"></image>
           <checkbox value="{{item.pic}}" checked="{{item.selected}}" style='display:none;' />
           <icon type="success" size="20" color="green" wx:if="{{item.selected}}" />
         </view>
@@ -18,7 +18,9 @@
   </form>
 </view>
 <view bindtap="closeLayer" class="layer" style="display:{{bigShow?'block':'none'}}">
-  <image mode="aspectFit" src="{{bigPic}}"></image>
-  <button type="primary" catchtap="select" data-selected="{{bigSelected}}"> 选择/取消 </button>
-  <button type="" catchtap="del"> 删除 </button>
+  <wxs src="../../lib/tools.wxs" module="tools" />
+  <image mode="aspectFit" src="{{tools.bigPic(bigPic)}}"></image>
+  <button wx:if="{{utms != batch}}" type="primary" catchtap="select" data-selected="{{bigSelected}}"> 选择/取消 </button>
+  <button wx:if="{{utms == batch}}" type="" catchtap="del"> 删除 </button>
+  <text class='tip tcenter'>点击图片关闭大图窗口</text>
 </view>

@@ -5,6 +5,12 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+
+    // if (wx.getStorageSync('uid')) {
+    //   wx.redirectTo({
+    //     url: '/pages/home/home',
+    //   })
+    // }
   },
 
   getUserInfo: function(cb) {

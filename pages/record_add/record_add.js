@@ -193,5 +193,11 @@ Page({
         workdate: [date.getFullYear(), date.getMonth() + 1, date.getDate()].join('-')
       })
     }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
   }
 })

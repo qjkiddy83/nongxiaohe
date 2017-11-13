@@ -32,6 +32,9 @@ button{
   margin-bottom:10px;
 
 }
+.tip.tcenter{
+  text-align: center
+}
 .msg{
   margin: 4rem auto 3rem;
   text-align: center;
@@ -169,4 +172,22 @@ button{
   width: 150px;
   margin: 2rem auto 0;
   height: 150px;
+}
+
+.layer{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  background: #f2f2f2;
+}
+.layer image{
+  width: 100%;
+  height: 70%;
+}
+.layer .qrcode{
+  width: 80%;
+  height: auto;
 }

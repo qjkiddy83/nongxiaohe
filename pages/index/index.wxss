@@ -69,3 +69,113 @@ button{
   color:#FFFFFF;
   background-color:#1AAD19;
 }
+
+/**index.wxss**/
+page{
+  background: #f2f2f2;
+}
+.h1{
+  display: block;
+  text-align: center;
+  margin: 4rem auto 2rem;
+  font-size: 26px;
+}
+input{
+  display: block;
+  width: 96%;
+  background: #fff;
+  margin: 0;
+  font-size: 18px;
+  line-height: 46px;
+  height: 46px;
+  margin-bottom: 1px;
+  padding: 0 0 0 4%;
+}
+button{
+  margin-top: 3rem;
+  width: 60%;
+}
+.home .tip{
+  display:block;
+  font-size:14px;
+  color:#999999;
+  margin-top:10px;
+  margin-left:4%;
+  margin-bottom:10px;
+  text-align: left
+}
+.msg{
+  margin: 4rem auto 3rem;
+  text-align: center;
+}
+.msg icon{
+  display: block;
+  margin-bottom: 1rem;
+}
+.msg text{
+  display: block;
+}
+.result button{
+  margin-top: 1rem;
+}
+.button{
+  position:relative;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:14px;
+  padding-right:14px;
+  box-sizing:border-box;
+  font-size:16px;
+  text-align:center;
+  text-decoration:none;
+  line-height:2.55555556;
+  border-radius:5px;
+  -webkit-tap-highlight-color:transparent;
+  overflow:hidden;
+  color:#000000;
+  background-color:#F8F8F8;
+  margin-top: 3rem;
+  width: 60%;
+}
+.button.primary{
+  color:#FFFFFF;
+  background-color:#1AAD19;
+}
+.input{
+  position: relative;
+  display:block;
+  width:96%;
+  background:#fff;
+  margin:0;
+  font-size:16px;
+  line-height:46px;
+  height:46px;
+  margin-bottom:1px;
+  padding:0 0 0 4%;
+}
+.input b{
+  position: absolute;
+  right: 4%;
+}
+.input.superscript b{
+  background: #fd361d;
+  width: 20px;
+  height: 20px;
+  top: 13px;
+  font-size: 12px;
+  border-radius: 50%;
+  color: #ffffff;
+  line-height: 20px;
+  text-align: center;
+}
+.group{
+  margin-bottom: 1rem;
+}
+.group .box{
+  display: flex;
+}
+.group .box .button{
+  flex: 1;
+  margin: 0 2% 20px;
+}

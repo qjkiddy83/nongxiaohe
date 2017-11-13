@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <scroll-view scroll-y bindscrolltolower="lower" style="height:{{scrHeight}}px">
-  <view class="card" wx:for="{{msgs}}">
+  <view class="card {{item.status?'readed':''}}" wx:for="{{msgs}}">
     <view class="h3">{{item.type}}</view>
     <view class="p">{{item.content}}</view>
     <view class="date">{{item.cdates}}</view>

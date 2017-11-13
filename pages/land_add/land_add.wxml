@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="main">
-  <text class="h1">{{name}}</text>
+   <text class="h1"></text> 
 
   <view class="group">
     <input name="input" bindinput='nameUpdate' placeholder="地块名称" value="{{name}}"/>

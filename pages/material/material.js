@@ -19,7 +19,7 @@ Page({
         update_address: formData.address,
         update_master_name: formData.master_name,
         update_tel: formData.tel,
-        update_pic: formData.imgs.join(','),
+        // update_pic: formData.imgs.join(','),
         uid : uid
       },
       method: "POST",
@@ -29,11 +29,20 @@ Page({
       success: function (res) {
         let message = "提交成功"
 
-        if (!res.data.status) {
+        if (res.data.status != 1) {
           message = "提交失败"
         }
         wx.showToast({
-          title: message
+          title: message,
+          success:function(){
+            if (res.data.status == 1){
+              setTimeout(function(){
+                wx.navigateBack({
+                  delta: 1
+                })
+              },500)
+            }
+          }
         })
       }
     })
@@ -64,6 +73,12 @@ Page({
           }
         })
       }
+    })
+  },
+  viewImg:function(e){
+    this.setData({
+      layer:true,
+      bigPic:e.currentTarget.dataset.url
     })
   },
   onLoad: function (options) {
@@ -101,6 +116,26 @@ Page({
           id : result.data.farm.id
         })
       }
+    })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: "农小盒",
+      path: "/pages/index/index"
+    }
+  },
+  closeLayer:function(){
+    this.setData({
+      layer:false
+    })
+  },
+  del:function(){
+    let imgs = this.data.imgs;
+    let index = this.data.imgs.indexOf(this.data.bigPic);
+    imgs.splice(index,1);
+    this.setData({
+      imgs:imgs,
+      layer:false
     })
   }
 })
