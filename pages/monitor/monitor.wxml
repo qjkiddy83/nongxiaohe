@@ -8,8 +8,8 @@
   <view class="tabcont" style="display:{{tab==0?'block':'none'}}">
     <view class="group">
       <text class="tip">设备状态</text>
-      <view class="input"> 网关状态： <b><i class="{{home.info.state?'status-success':'status-error'}}">{{home.info.state?"正常":"离线"}}</i></b></view>
-      <view class="input">  网关电压： <b>{{home.info.power||0}} V </b></view>
+      <view class="input"> 网关状态： <b><i class="{{home.status[0].value == '1'?'status-success':'status-error'}}">{{home.status[0].value == '1'?"正常":"离线"}}</i></b></view>
+      <view class="input">  网关电压： <b>{{home.status[1].value||0}} V </b></view>
     </view>
     <view class="group" wx:if="{{home.pic.value}}">
       <text class="tip">实时图像  {{home.pic.cdates}}</text>
