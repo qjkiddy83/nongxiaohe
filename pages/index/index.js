@@ -16,61 +16,75 @@ Page({
     })
     wx.login({
       success: function (loginres) {
-        wx.request({
-          url: app.globalData.api+'/login', //仅为示例，并非真实的接口地址
-          data: {
-            code: loginres.code,
-            mobile: e.detail.value.mobile,
-            password: e.detail.value.password
-          },
-          success: function (res) {
-            if(res.data.status === 1){
-              wx.setStorageSync('uid', res.data.data.uid);
-              self.setData({
-                success: true
-              })
-            }else{
-              wx.showModal({
-                title: '提示',
-                content: '手机号或者安全码错误',
-                confirmText: '知道了',
-                showCancel: false,
-                success: function (res) {
-                  if (res.confirm) {
-                    console.log('用户点击确定')
-                  }
-                }
-              })
-            }
-          },
-          fail: function () {
-            wx.showModal({
-              title: '提示',
-              content: '手机号或者安全码错误',
-              confirmText: '知道了',
-              showCancel: false,
+        wx.getUserInfo({
+          success(info){
+            wx.request({
+              url: app.globalData.api + '/login', //仅为示例，并非真实的接口地址
+              data: {
+                code: loginres.code,
+                mobile: e.detail.value.mobile,
+                password: e.detail.value.password,
+                nickname: info.userInfo.nickName
+              },
               success: function (res) {
-                if (res.confirm) {
-                  console.log('用户点击确定')
+                if (res.data.status === 1) {
+                  if(res.data.data.status == 1){
+                    wx.showModal({
+                      content: '您的账号已被禁用'
+                    })
+                    return;
+                  }
+                  wx.setStorageSync('uid', res.data.data.uid);
+                  wx.setStorageSync('wid', res.data.data.wid);
+                  self.setData({
+                    success: true
+                  })
+                } else {
+                  wx.showModal({
+                    title: '提示',
+                    content: '手机号或者安全码错误',
+                    confirmText: '知道了',
+                    showCancel: false,
+                    success: function (res) {
+                      if (res.confirm) {
+                        console.log('用户点击确定')
+                      }
+                    }
+                  })
                 }
+              },
+              fail: function () {
+                wx.showModal({
+                  title: '提示',
+                  content: '手机号或者安全码错误',
+                  confirmText: '知道了',
+                  showCancel: false,
+                  success: function (res) {
+                    if (res.confirm) {
+                      console.log('用户点击确定')
+                    }
+                  }
+                })
+              },
+              complete: function () {
+                wx.hideLoading()
               }
             })
-          },
-          complete:function(){
-            wx.hideLoading()
           }
         })
+        
       }
     })
   },
   toHome:function(){
-    console.log('aaa')
+    // console.log('aaa')
     this.setData({
       logined:true
     })
     this.getHomeData();
   },
   onLoad: function () {
+    uid = wx.getStorageSync('uid');
     var windowWidth = 320;
     var self = this;
     try {
@@ -84,6 +98,10 @@ Page({
     }
     if(uid){
       this.getHomeData();
+    }else{
+      this.setData({
+        logined: false
+      })
     }
   },
   getHomeData:function(){
@@ -91,7 +109,7 @@ Page({
     wx.request({
       url: app.globalData.api,
       data: {
-        uid: uid
+        uid: wx.getStorageSync('uid')
       },
       success: function (res) {
         let result = res.data;

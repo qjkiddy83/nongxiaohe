@@ -2,6 +2,9 @@
 page{
   background: #f2f2f2;
 }
+.main{
+  padding-bottom: 4rem;
+}
 .h1{
   display: block;
   text-align: center;
@@ -169,6 +172,9 @@ button{
   right: 15px;
   bottom: 15px;
 }
+.img .imgbox:nth-child(3n) icon{
+  right: 0;
+}
 .radio-group{
   padding-left: 4%;
 }
@@ -201,5 +207,12 @@ button{
   height: 70%;
 }
 .submit{
-  margin: 2rem auto 1rem;
+  margin: 1rem auto;
+}
+.submitlayer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  background-color: #fff;
 }

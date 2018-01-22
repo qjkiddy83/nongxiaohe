@@ -67,6 +67,8 @@ Page({
       tab: e.target.dataset.tab
     })
     switch (e.target.dataset.tab) {
+      case 0:
+      break;
       case 1:
         wx.request({
           url: app.globalData.api+'/device/stat',
@@ -112,7 +114,7 @@ Page({
                 })
                 return;
               }
-              console.log(result.data)
+              // console.log(result.data)
 
               self.setData({
                 msg: result.data.msg,
@@ -172,7 +174,7 @@ Page({
       _data[i].name = item.name;
       _data[i].list = JSON.parse(item.data.value)
     })
-    if (!_data[0]){
+    if (!_data[0].list.length){
       return;
     }
     new wxCharts({
