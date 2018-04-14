@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
-var uid = wx.getStorageSync('uid');
+var uid = '';
 var windowWidth = 320;
 var pagelock = 0;
 Page({
@@ -46,6 +46,7 @@ Page({
     })
   },
   onLoad: function () {
+    uid = wx.getStorageSync('uid');
     var self = this;
     var res = wx.getSystemInfoSync();
     windowWidth = res.windowWidth;

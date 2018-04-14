@@ -2,7 +2,7 @@
 //获取应用实例
 var app = getApp()
 var date = new Date();
-var uid = wx.getStorageSync('uid');
+var uid = '';
 
 Page({
   data: {
@@ -128,6 +128,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    uid = wx.getStorageSync('uid');
     var windowWidth = 320;
     var self = this;
     try {
@@ -142,6 +143,7 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
+    console.log("uid====="+uid)
     wx.request({
       url: app.globalData.api +"/work/land_pic",
       data:{

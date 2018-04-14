@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 var app = getApp()
-var uid = wx.getStorageSync('uid');
+var uid = '';
 var lineChart = null;
 var windowWidth = 320;
 var wxCharts = require('../../lib/wxcharts.js');
@@ -206,6 +206,7 @@ Page({
     });
   },
   onLoad: function (options) {
+    uid = wx.getStorageSync('uid');
     var self = this;
     var res = wx.getSystemInfoSync();
     windowWidth = res.windowWidth;

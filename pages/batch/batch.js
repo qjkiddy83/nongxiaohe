@@ -1,12 +1,13 @@
 //index.js
 //获取应用实例
 var app = getApp()
-var uid = wx.getStorageSync('uid');
+var uid = '';
 Page({
   data: {
     success : false
   },
   onLoad: function () {
+    uid = wx.getStorageSync('uid');
     var windowWidth = 320;
     var self = this;
     try {
