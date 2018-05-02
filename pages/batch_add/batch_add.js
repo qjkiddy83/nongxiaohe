@@ -152,6 +152,9 @@ Page({
           wx.saveImageToPhotosAlbum({
             filePath: res.tempFilePath,
             success(res) {
+              wx.showToast({
+                title: '下载成功',
+              })
             }
           })
         }

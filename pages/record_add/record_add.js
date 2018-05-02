@@ -67,6 +67,14 @@ Page({
   },
   submit:function(){
     var self = this;
+    if (!self.data.content || !self.data.category_id || !self.data.land_id || !self.data.amount){
+      wx.showModal({
+        title: '提示',
+        content: '请填写完整内容再提交',
+        showCancel:false
+      })
+      return false;
+    }
     wx.request({
       url: app.globalData.api+'/work',
       data: {
@@ -97,10 +105,21 @@ Page({
           title: '提交成功',
           complete: function () {
             var pages = getCurrentPages();
-            pages[pages.length - 2]._load();
-            wx.navigateBack({
-              delta: 1
+            let isFromList = false;
+            pages.forEach(function(page,i){
+              if (page.route == "pages/record/record"){
+                isFromList = true;
+                pages[i]._load();
+                wx.navigateBack({
+                  delta: pages.length-i-1
+                })
+              }
             })
+            if (!isFromList){
+              wx.navigateTo({
+                url: '/pages/record/record',
+              })
+            }
           }
         })
       }

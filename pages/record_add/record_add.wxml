@@ -2,6 +2,27 @@
 <view class="main">
   <text class="h1">记录农事</text>
   <view class="group">
+    <text class="tip">农资采购</text>
+    <label class="label-input">
+        <text>农事时间</text>
+        <picker mode="date" value="{{workdate}}" bindchange="dateChange">
+          <view class="input">{{workdate}}</view>
+        </picker>
+      </label>
+    <label class="label-input">
+        <text>劳作内容</text>
+        <view class="input">
+          <input name="input" value='{{content}}' bindinput='contentUpdate' placeholder="如：肥料名、药品名、劳动方式" />
+        </view>
+      </label>
+    <label class="label-input">
+        <text>劳作数量</text>
+        <view class="input">        
+          <input name="input" value='{{amount}}' bindinput='amountUpdate' placeholder="如：30L/亩" />
+        </view>
+      </label>
+  </view>
+  <view class="group" style='display:none'>
     <text class="tip">劳作照片（可不填）</text>
     <view class="img">
       <block wx:for="{{imgs}}">
@@ -26,28 +47,7 @@
         </label>
     </radio-group>
   </view>
-  <view class="group">
-    <text class="tip">农资采购</text>
-    <label class="label-input">
-        <text>农事时间</text>
-        <picker mode="date" value="{{workdate}}" bindchange="dateChange">
-          <view class="input">{{workdate}}</view>
-        </picker>
-      </label>
-    <label class="label-input">
-        <text>劳作内容</text>
-        <view class="input">
-          <input name="input" value='{{content}}' bindinput='contentUpdate' placeholder="如：肥料名、药品名、劳动方式" />
-        </view>
-      </label>
-    <label class="label-input">
-        <text>劳作数量</text>
-        <view class="input">        
-          <input name="input" value='{{amount}}' bindinput='amountUpdate' placeholder="如：30L/亩" />
-        </view>
-      </label>
-  </view>
-  <view class="group">
+  <view class="group btncont">
     <button type="primary" bindtap="submit"> 确认 </button>
   </view>
 </view>

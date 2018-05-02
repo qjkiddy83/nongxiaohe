@@ -78,9 +78,7 @@ Page({
   },
   toHome:function(){
     // console.log('aaa')
-    this.setData({
-      logined:true
-    })
+    
     this.getHomeData();
   },
   onLoad: function () {
@@ -106,6 +104,9 @@ Page({
   },
   getHomeData:function(){
     var self = this;
+    this.setData({
+      logined: true
+    })
     wx.request({
       url: app.globalData.api,
       data: {
