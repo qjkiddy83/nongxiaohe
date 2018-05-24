@@ -11,7 +11,9 @@
     "pages/record/record",
     "pages/monitor/monitor",
     "pages/monitor_seting/monitor_seting",
-    "pages/msgs/msgs"
+    "pages/msgs/msgs",
+    "pages/index_produce/index_produce",
+    "pages/images/images"
   ],
   "window": {
     "backgroundTextStyle": "light",

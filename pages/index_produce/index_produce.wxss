@@ -64,12 +64,15 @@ button{
   overflow:hidden;
   color:#000000;
   background-color:#F8F8F8;
-  margin-top: 3rem;
+  margin-top: 1rem;
   width: 60%;
 }
 .button.primary{
   color:#FFFFFF;
   background-color:#1AAD19;
+}
+.button.mb{
+  margin-bottom: 1rem;
 }
 .input{
   position: relative;
@@ -108,57 +111,6 @@ button{
   flex: 1;
   margin: 0 2% 20px;
 }
-.imgs{
-  background-color: #fff;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100rpx;
-  bottom: 0;
-}
-.imgs navigator{
-  display: flex;
-  flex-direction: row;
-  padding: 20rpx;
-  box-sizing: border-box;
-  border-bottom: 1rpx solid #f3f3f3;
-}
-.imgs navigator image{
-  width: 320rpx;
-  height: 160rpx;
-  margin-right: 20rpx;
-}
-.imgs navigator>view{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  font-size: 28rpx;
-  color: #b8b8b8;
-}
-.imgs navigator .time{
-  font-size: 26rpx;
-}
 .home{
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 110rpx;
-  display: flex;
-  flex-direction: column;
-}
-.flextop{
-  flex: 1;
-}
-.imgscont{
-  position: relative;
-  flex: 100;
-  margin-bottom: 0;
-}
-.codetip{
-  display: block;
-  font-size: 14px;
-  color: #999999;
-  text-align: center;
-  margin-top: 10px;
+  padding-bottom: 110rpx;
 }

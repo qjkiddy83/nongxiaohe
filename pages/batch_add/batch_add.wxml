@@ -6,7 +6,7 @@
   </view>
   <form bindsubmit='formSubmit'>
     <view class="group">
-      <text class="tip">产品照片（可不填）</text>
+      <text class="tip">产品照片</text>
       <view class="img">
         <checkbox-group name="imgs" style="display:none">
           <checkbox wx:for="{{imgs}}" value="{{item}}" checked="true" />

@@ -51,7 +51,7 @@ Page({
     var res = wx.getSystemInfoSync();
     windowWidth = res.windowWidth;
     self.setData({
-      scrHeight: res.windowHeight,
+      scrHeight: res.windowHeight-55,
       wwidth: windowWidth
     })
 
@@ -85,7 +85,11 @@ Page({
   },
   onUnload:function(){
     let pages = getCurrentPages();
-    
-    pages[pages.length - 2].getHomeData()
+    pages.forEach(page =>{
+      console.log(page)
+      if(page.route == "/pages/home/home"){
+        pages[pages.length - 2].getHomeData()
+      }
+    })
   }
 })

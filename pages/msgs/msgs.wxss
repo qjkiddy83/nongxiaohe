@@ -1,3 +1,4 @@
+@import '../../lib/common.wxss';
 .card{
   margin-bottom: 1px;
   background: rgba(242, 242, 242, 1);

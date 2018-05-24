@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<view class="main home">
+    <view class="group">
+      <text class="tip">1.设置农场信息</text>
+      <navigator class="input" url="../material/material"> 农场资料设置
+        <b>></b>
+      </navigator>
+    </view>
+    <view class="group">
+      <text class="tip">2.为农场设置地块</text>
+      <navigator class="input" url="../land/land"> 农场地块设置
+        <b>></b>
+      </navigator>
+    </view>
+    <view class="group">
+      <text class="tip">3.定期给农产品拍照</text>
+      <navigator class="button primary" url="../land_pics/land_pics?isfrom_select=0"> 拍作物 </navigator>
+    </view>
+    <view class="group">
+      <text class="tip">4.生产管理中及时记录农事操作</text>
+      <navigator class="button primary mb" url="../record_add/record_add"> 记农事 </navigator>
+      <navigator class="input" url="../record/record"> 农事记录管理
+        <b>></b>
+      </navigator>
+    </view>
+    <view class="group">
+      <text class="tip">5.农作物出场时发布产品批次打印溯源二维码</text>
+      <navigator class="button primary mb" url="../batch_add/batch_add"> 发批次 </navigator>
+      <navigator class="input" url="../batch/batch"> 农产品溯源批次管理
+        <b>></b>
+      </navigator>
+    </view>
+</view>
+<view class='footer'>
+  <navigator open-type="redirect" url='/pages/index/index'>
+    <text class='icon icon-msnui-monitor'></text>环境监测</navigator>
+  <navigator open-type="redirect" class='cur'>
+    <text class='icon icon-shengchan'></text>农事生产</navigator>
+  <navigator open-type="redirect" url="/pages/msgs/msgs">
+    <text class='icon icon-icon-xiaoxi'></text>消息提醒</navigator>
+</view>

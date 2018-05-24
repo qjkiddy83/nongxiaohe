@@ -5,10 +5,26 @@ var uid = '';
 Page({
   data: {
     success: false,
-    logined: uid ? true : false
+    logined: uid ? true : false,
+    authed:false
+  },
+  pwdChange:function(e){
+    this.setData({
+      password:e.detail.value
+    })
+  },
+  mobileChange: function (e) {
+    this.setData({
+      mobile: e.detail.value
+    })
+  },
+  bindGetUserInfo:function(e){
+    if(e.detail.userInfo){
+      this.bindDevice();
+    }
   },
   //事件处理函数
-  bindDevice: function (e) {
+  bindDevice: function () {
     var rand = Math.random() * 10;
     var self = this;
     wx.showLoading({
@@ -17,18 +33,18 @@ Page({
     wx.login({
       success: function (loginres) {
         wx.getUserInfo({
-          success(info){
+          success(info) {
             wx.request({
               url: app.globalData.api + '/login', //仅为示例，并非真实的接口地址
               data: {
                 code: loginres.code,
-                mobile: e.detail.value.mobile,
-                password: e.detail.value.password,
+                mobile: self.data.mobile,
+                password: self.data.password,
                 nickname: info.userInfo.nickName
               },
               success: function (res) {
                 if (res.data.status === 1) {
-                  if(res.data.data.status == 1){
+                  if (res.data.data.status == 1) {
                     wx.showModal({
                       content: '您的账号已被禁用'
                     })
@@ -72,13 +88,13 @@ Page({
             })
           }
         })
-        
+
       }
     })
   },
-  toHome:function(){
+  toHome: function () {
     // console.log('aaa')
-    
+
     this.getHomeData();
   },
   onLoad: function () {
@@ -94,15 +110,29 @@ Page({
     } catch (e) {
       console.error('getSystemInfoSync failed!');
     }
-    if(uid){
+    if (uid) {
       this.getHomeData();
-    }else{
+    } else {
       this.setData({
         logined: false
       })
     }
   },
-  getHomeData:function(){
+  onReady:function(){
+    wx.getSetting({
+      success:function(res){
+        if (res.authSetting['scope.userInfo']){
+          this.setData({
+            authed:true
+          })
+        }
+      }.bind(this)
+    })  
+  },
+  scrollLower: function () {
+    console.log('11111')
+  },
+  getHomeData: function () {
     var self = this;
     this.setData({
       logined: true
@@ -129,10 +159,10 @@ Page({
       }
     })
   },
-  onShareAppMessage:function(){
+  onShareAppMessage: function () {
     return {
-      title:"农小盒",
-      path:"/pages/index/index"
+      title: "农小盒",
+      path: "/pages/index/index"
     }
   }
 })

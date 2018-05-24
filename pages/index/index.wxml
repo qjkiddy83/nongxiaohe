@@ -1,50 +1,81 @@
-<!--index.wxml-->
 <view class="main" style='display:{{logined?"none":""}}'>
   <view class="login" style="display:{{success?'none':'block'}};">
-    <form bindsubmit="bindDevice">
-    <text class="h1">农小盒账号绑定登录</text>
-    <input name="mobile" type='number' placeholder="手机号" />
-    <input name="password" type='password' placeholder="安全码" />
-
-    <button formType="submit" type="primary"> 确认绑定 </button>
-    <text class="tip">没有安全码？请查看设备说明书</text>
+    <form>
+      <text class="h1">农小盒账号绑定登录</text>
+      <input name="mobile" type='number' placeholder="手机号" bindinput='mobileChange' value='{{mobile}}'/>
+      <input name="password" type='password' value="{{password}}" placeholder="安全码" bindinput='pwdChange'/>
+      <view>
+        <button wx:if="{{authed}}" bindtap='bindDevice' type="primary"> 确认绑定 </button>
+        <button wx:if="{{!authed}}" open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" type="primary"> 确认绑定 </button>
+      </view>
+      <text class="codetip">没有安全码？请查看设备说明书</text>
     </form>
   </view>
   <view class="result" style="display:{{success?'block':'none'}};">
     <view class="msg">
-      <icon type="success" size="60"/>
+      <icon type="success" size="60" />
       <text>绑定成功</text>
     </view>
-    <text class="tip">下次登录直接进入设备管理界面</text>
+    <text class="codetip">下次登录直接进入设备管理界面</text>
     <text class="button primary" bindtap='toHome'> 进入设备管理界面 </text>
   </view>
 </view>
 <view class="main home" style='display:{{logined?"":"none"}}'>
-  <view class="login">
+  <view class='flextop'>
     <text class="h1">{{farm.name}}</text>
     <view class="group">
       <text class="tip">环境监测</text>
-      <navigator class="input" data-id='{{item.id}}' url="../monitor/monitor?id={{item.id}}" wx:for="{{gateway}}">{{item.name}} <b>></b></navigator>
+      <navigator class="input" data-id='{{item.id}}' url="../monitor/monitor?id={{item.id}}" wx:for="{{gateway}}">{{item.name}}
+        <b>></b>
+      </navigator>
     </view>
-    <view class="group">
-      <text class="tip">农事生产</text>
-      <view class="box">
-        <navigator class="button primary" url="../land_pics/land_pics?isfrom_select=0"> 拍作物 </navigator>
-        <navigator class="button primary" url="../record_add/record_add"> 记农事 </navigator>
-        <navigator class="button primary" url="../batch_add/batch_add"> 发批次 </navigator>
-      </view>
-      <navigator class="input" url="../material/material"> 农场资料设置 <b>></b></navigator>
-      <navigator class="input" url="../land/land"> 农场地块设置 <b>></b></navigator>
-      <navigator class="input" url="../record/record"> 农事记录管理 <b>></b></navigator>
-      <navigator class="input" url="../batch/batch"> 农产品溯源批次管理 <b>></b></navigator>
-    </view>
-    <!-- <view class="group">
-      <text class="tip">农资采购</text>
-      <navigator class="input" url=""> 农小盒农资商城 <b>></b></navigator>
-    </view> -->
-    <view class="group">
-      <text class="tip">基础信息</text>
-      <navigator class="input superscript" url="../msgs/msgs"> 消息提醒 <b>{{msg>99?'99+':msg}}</b></navigator>
-    </view>
+  </view>
+  <view class="group imgscont">
+    <text class="tip">图像检测</text>
+    <scroll-view class='imgs' scroll-y bindscrolltolower="scrollLower">
+      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
+        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
+        <view>
+          <view>某某某设备名称</view>
+          <view class='time'>2016.01.10</view>
+        </view>
+      </navigator>
+      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
+        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
+        <view>
+          <view>某某某设备名称</view>
+          <view class='time'>2016.01.10</view>
+        </view>
+      </navigator>
+      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
+        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
+        <view>
+          <view>某某某设备名称</view>
+          <view class='time'>2016.01.10</view>
+        </view>
+      </navigator>
+      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
+        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
+        <view>
+          <view>某某某设备名称</view>
+          <view class='time'>2016.01.10</view>
+        </view>
+      </navigator>
+      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
+        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
+        <view>
+          <view>某某某设备名称</view>
+          <view class='time'>2016.01.10</view>
+        </view>
+      </navigator>
+    </scroll-view>
+  </view>
+  <view class='footer'>
+    <navigator  open-type="redirect" class='cur'>
+      <text class='icon icon-msnui-monitor'></text>环境监测</navigator>
+    <navigator open-type="redirect" url='/pages/index_produce/index_produce'>
+      <text class='icon icon-shengchan'></text>农事生产</navigator>
+    <navigator open-type="redirect" url="/pages/msgs/msgs">
+      <text class='icon icon-icon-xiaoxi'></text>消息提醒</navigator>
   </view>
 </view>

@@ -14,7 +14,7 @@ Page({
   //事件处理函数
   formSubmit: function (e) {
     var self = this, formData = e.detail.value;
-    console.log(formData);
+    // console.log(formData);
     if (!formData.name || !formData.device_id || !formData.land || !formData.zzdates || !formData.csdates){
       wx.showModal({
         content: '请填写必须的资料',
@@ -53,7 +53,7 @@ Page({
               // wx.navigateBack({
               //   delta: 1
               // })
-              console.log(res)
+              // console.log(res)
               wx.request({
                 url: app.globalData.api + "/origin/info",
                 data: {
@@ -260,12 +260,32 @@ Page({
     }
   },
   onUnload:function(){
-    var pages = getCurrentPages();
-    pages[pages.length - 2]._load();
+    // var pages = getCurrentPages();
+    // pages.forEach(function (page, i) {
+    //   if (page.route == "pages/batch/batch") {
+    //     pages[i]._load();
+    //     wx.navigateBack({
+    //       delta: pages.length - i - 1
+    //     })
+    //   }
+    // })
   },
   goback:function(){
-    wx.navigateBack({
-      delta: 1
+    var pages = getCurrentPages();
+    let isFromList = false;
+    pages.forEach(function (page, i) {
+      if (page.route == "pages/batch/batch") {
+        isFromList = true;
+        pages[i]._load();
+        wx.navigateBack({
+          delta: pages.length - i - 1
+        })
+      }
     })
+    if (!isFromList) {
+      wx.navigateTo({
+        url: '/pages/batch/batch',
+      })
+    }
   }
 })

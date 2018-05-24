@@ -14,7 +14,6 @@ Page({
   //事件处理函数
   submitSet: function(e) {
     let act = e.currentTarget.dataset.act,self = this;
-    console.log(act,self.data)
     switch(act){
       case 'ok':
         wx.request({

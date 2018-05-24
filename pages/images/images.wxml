@@ -1,0 +1,16 @@
+<view class="tabcont" >
+    <scroll-view class="piclist" scroll-y bindscrolltolower="lower" style="height:{{scrHeight}}px">
+      <view class="group">
+        <text class="tip">选择设备拍照时间</text>
+        <picker mode="date" value="{{date}}" bindchange="dateChange">
+          <view class="input">拍照时间<b>{{date}}</b></view>
+        </picker>
+      </view>
+      <view class="group">
+        <view class="pic" wx:for="{{pics}}">
+          <image mode="widthFix" src="{{item.pic}}"></image>
+          <text class="tip">{{item.cdates}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>

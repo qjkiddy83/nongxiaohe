@@ -6,3 +6,11 @@
     <view class="date">{{item.cdates}}</view>
   </view>
 </scroll-view>
+<view class='footer'>
+  <navigator  open-type="redirect" url='/pages/index/index'>
+    <text class='icon icon-msnui-monitor'></text>环境监测</navigator>
+  <navigator open-type="redirect" url='/pages/index_produce/index_produce'>
+    <text class='icon icon-shengchan'></text>农事生产</navigator>
+  <navigator class='cur' open-type="redirect">
+    <text class='icon icon-icon-xiaoxi'></text>消息提醒</navigator>
+</view>
