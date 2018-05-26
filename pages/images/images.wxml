@@ -1,5 +1,5 @@
 <view class="tabcont" >
-    <scroll-view class="piclist" scroll-y bindscrolltolower="lower" style="height:{{scrHeight}}px">
+    <scroll-view class="piclist" scroll-y bindscrolltolower="lower">
       <view class="group">
         <text class="tip">选择设备拍照时间</text>
         <picker mode="date" value="{{date}}" bindchange="dateChange">

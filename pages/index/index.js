@@ -154,28 +154,8 @@ Page({
         self.setData({
           gateway: result.data.gateway,
           farm: result.data.farm,
-          msg: result.data.msg
-        })
-      }
-    })
-    wx.request({
-      url: app.globalData.api+'/device',
-      data: {
-        uid: wx.getStorageSync('uid')
-      },
-      success: function (res) {
-        let result = res.data;
-        if (!result.status) {
-          wx.showModal({
-            content: '获取网关列表失败',
-            showCancel: false
-          })
-          return;
-        }
-        self.setData({
-          gateway: result.data.gateway,
-          farm: result.data.farm,
-          msg: result.data.msg
+          msg: result.data.msg,
+          pics:result.data.pic
         })
       }
     })

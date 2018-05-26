@@ -33,39 +33,11 @@
   <view class="group imgscont">
     <text class="tip">图像检测</text>
     <scroll-view class='imgs' scroll-y bindscrolltolower="scrollLower">
-      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
-        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
+      <navigator data-id='{{item.id}}' url="../images/images?device={{item.id}}" wx:for="{{pics}}">
+        <image src='{{item.value}}'></image>
         <view>
-          <view>某某某设备名称</view>
-          <view class='time'>2016.01.10</view>
-        </view>
-      </navigator>
-      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
-        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
-        <view>
-          <view>某某某设备名称</view>
-          <view class='time'>2016.01.10</view>
-        </view>
-      </navigator>
-      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
-        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
-        <view>
-          <view>某某某设备名称</view>
-          <view class='time'>2016.01.10</view>
-        </view>
-      </navigator>
-      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
-        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
-        <view>
-          <view>某某某设备名称</view>
-          <view class='time'>2016.01.10</view>
-        </view>
-      </navigator>
-      <navigator data-id='{{item.id}}' url="../images/images" wx:for="{{gateway}}">
-        <image src='http://img3.selfimg.com.cn/cnttryfocus2/2018/05/18/1526628797_52Y8pf.jpg'></image>
-        <view>
-          <view>某某某设备名称</view>
-          <view class='time'>2016.01.10</view>
+          <view>{{item.name}}</view>
+          <view class='time'>{{item.cdates}}</view>
         </view>
       </navigator>
     </scroll-view>
